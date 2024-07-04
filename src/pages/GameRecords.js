@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, doc, updateDoc, getDoc, addDoc, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, doc, addDoc, query, orderBy, limit } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography, List, ListItem, ListItemText, Stepper, Step, StepLabel } from '@mui/material';
 import SelectGame from '../components/record/SelectGame';
 import LineupRegistration from '../components/record/LineupRegistration';
 import BaseballField from '../components/record/BaseballField';
+import CountBoard from '../components/record/CountBoard';
+import ScoreBoard from '../components/record/ScoreBoard';
 
 const GameRecords = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -19,6 +21,10 @@ const GameRecords = () => {
   const [outCount, setOutCount] = useState(0);
   const [ballCount, setBallCount] = useState(0);
   const [strikeCount, setStrikeCount] = useState(0);
+  const [score, setScore] = useState(Array(9).fill(0));
+  const [currentInning, setCurrentInning] = useState(1);
+  const [halfInning, setHalfInning] = useState('초');
+  const [runners, setRunners] = useState({ first: '', second: '', third: '' });
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -31,22 +37,29 @@ const GameRecords = () => {
   useEffect(() => {
     if (selectedGame) {
       const fetchGameDetails = async () => {
-        const gameDoc = await getDoc(doc(db, 'games', selectedGame));
-        if (gameDoc.exists()) {
-          setLineup(gameDoc.data().lineup || []);
+        const q = query(collection(db, 'events'), orderBy('timestamp', 'desc'), limit(1));
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+          const lastEvent = querySnapshot.docs[0].data();
+          setCurrentInning(lastEvent.inning);
+          setOutCount(lastEvent.outs);
+          setHalfInning(lastEvent.teamAtBat === 'away' ? '초' : '말');
+          setRunners(lastEvent.runners);
+          const batterIndex = lineup.findIndex(player => player.batter === lastEvent.batter);
+          setCurrentBatterIndex(batterIndex !== -1 ? batterIndex : 0);
         }
       };
-  
+
       const fetchRecords = async () => {
         const q = query(collection(db, 'games', selectedGame, 'records'), orderBy('timestamp', 'asc'));
         const querySnapshot = await getDocs(q);
         setRecords(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
       };
-  
+
       fetchGameDetails();
       fetchRecords();
     }
-  }, [selectedGame]);
+  }, [selectedGame, lineup]);
 
   const handleGameSelect = (gameId) => {
     setSelectedGame(gameId);
@@ -60,16 +73,48 @@ const GameRecords = () => {
 
   const handleSubmit = async () => {
     const event = {
+      gameId: selectedGame,
       batter: lineup[currentBatterIndex].batter,
       result: result,
       hitLocation: hitLocation,
+      inning: currentInning,
+      outs: outCount,
+      teamAtBat: halfInning === '초' ? 'away' : 'home',
+      runners: runners,
       timestamp: new Date(),
     };
-    await addDoc(collection(db, 'games', selectedGame, 'records'), event);
-    setResult('');
-    setHitLocation('');
+    await addDoc(collection(db, 'events'), event);
+
+    // Update counts based on result
+    if (result === '아웃') {
+      setOutCount((prev) => prev + 1);
+      if (outCount + 1 >= 3) {
+        if (halfInning === '초') {
+          setHalfInning('말');
+        } else {
+          setHalfInning('초');
+          setCurrentInning((prev) => prev + 1);
+        }
+        setOutCount(0);
+      }
+    } else {
+      // Update runners based on the hit result
+      let newRunners = { ...runners };
+      if (result === '안타') {
+        if (runners.third) setScore((prev) => prev.map((s, i) => (i === currentInning - 1 ? s + 1 : s)));
+        newRunners = { first: lineup[currentBatterIndex].batter, second: runners.first, third: runners.second };
+      }
+      setRunners(newRunners);
+    }
+
+    // Reset counts for next batter
+    setBallCount(0);
+    setStrikeCount(0);
+
+    // Move to the next batter
     setCurrentBatterIndex((currentBatterIndex + 1) % lineup.length);
 
+    // Fetch updated records
     const q = query(collection(db, 'games', selectedGame, 'records'), orderBy('timestamp', 'asc'));
     const querySnapshot = await getDocs(q);
     setRecords(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
@@ -91,23 +136,23 @@ const GameRecords = () => {
       {activeStep === 2 && (
         <Box>
           <Typography variant="h6">타격 기록</Typography>
-          <Box display="flex">
-            <Box>
-              <Typography variant="h6">스코어 보드</Typography>
-              <Typography>아웃카운트: {outCount}</Typography>
-              <Typography>볼카운트: {ballCount}</Typography>
-              <Typography>스트라이크카운트: {strikeCount}</Typography>
-            </Box>
-            <Box>
-              <Typography variant="h6">라인업</Typography>
-              <List>
-                {lineup.map((player, index) => (
-                  <ListItem key={index} selected={index === currentBatterIndex}>
-                    <ListItemText primary={`${index + 1}번 타자: ${players.find(p => p.id === player.batter)?.name}`} />
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
+          <Box display="flex" justifyContent="space-between">
+            <CountBoard ballCount={ballCount} strikeCount={strikeCount} outCount={outCount} inning={currentInning} halfInning={halfInning} />
+            <ScoreBoard
+              innings={Array.from({ length: score.length }, (_, i) => i + 1)}
+              homeTeamScores={score}
+              awayTeamScores={score} // For now, we use the same scores for both teams as an example
+            />
+          </Box>
+          <Box>
+            <Typography variant="h6">라인업</Typography>
+            <List>
+              {lineup.map((player, index) => (
+                <ListItem key={index} selected={index === currentBatterIndex}>
+                  <ListItemText primary={`${index + 1}번 타자: ${players.find(p => p.id === player.batter)?.name}`} />
+                </ListItem>
+              ))}
+            </List>
           </Box>
           <Box>
             <FormControl fullWidth sx={{ mt: 2 }}>

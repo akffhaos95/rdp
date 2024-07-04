@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Container, Box } from '@mui/material';
 import Player from './pages/Player';
-import GameRegistration from './pages/GameRegistration';
+import GameRegistration from './pages/Game';
 import GameRecords from './pages/GameRecords';
 
 function App() {
