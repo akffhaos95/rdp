@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { auth, onAuthStateChanged } from '../firebase';
+import React, { useEffect, useState } from "react";
+import { auth, onAuthStateChanged } from "../firebase";
+
+import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const [loading, setLoading] = useState(true);
@@ -23,3 +24,4 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
 };
 
 export default ProtectedRoute;
+>

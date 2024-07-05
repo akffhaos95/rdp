@@ -1,37 +1,47 @@
-import React, { useState } from 'react';
-import { TextField, Button, Checkbox, FormControlLabel, Box, Typography } from '@mui/material';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase';
+import React, { useState } from "react";
+import {
+  TextField,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Box,
+  Typography,
+} from "@mui/material";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const GameForm = ({ players, onGameAdded }) => {
-  const [opponent, setOpponent] = useState('');
+  const [opponent, setOpponent] = useState("");
   const [participation, setParticipation] = useState([]);
-  const [date, setDate] = useState('');
-  const [venue, setVenue] = useState('');
-  const [league, setLeague] = useState('');
+  const [date, setDate] = useState("");
+  const [venue, setVenue] = useState("");
+  const [league, setLeague] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, 'games'), {
+      const docRef = await addDoc(collection(db, "games"), {
         opponent,
         participation,
         date,
         venue,
         league,
       });
-      console.log('Document written with ID: ', docRef.id);
-      setOpponent('');
+      console.log("Document written with ID: ", docRef.id);
+      setOpponent("");
       setParticipation([]);
-      setDate('');
-      setVenue('');
-      setLeague('');
-      alert('경기가 성공적으로 등록되었습니다.');
-      const querySnapshot = await getDocs(collection(db, 'games'));
-      const gamesData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setDate("");
+      setVenue("");
+      setLeague("");
+      alert("경기가 성공적으로 등록되었습니다.");
+      const querySnapshot = await getDocs(collection(db, "games"));
+      const gamesData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
       onGameAdded(gamesData);
     } catch (error) {
-      console.error('Error adding game: ', error);
+      console.error("Error adding game: ", error);
     }
   };
 

@@ -1,16 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase';
-import { FormControl, InputLabel, Select, MenuItem, Button, Box } from '@mui/material';
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+
+import { db } from "../../firebase";
 
 const SelectGame = ({ onGameSelect }) => {
   const [games, setGames] = useState([]);
-  const [selectedGame, setSelectedGame] = useState('');
+  const [selectedGame, setSelectedGame] = useState("");
 
   useEffect(() => {
     const fetchGames = async () => {
-      const querySnapshot = await getDocs(collection(db, 'games'));
-      setGames(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      const querySnapshot = await getDocs(collection(db, "games"));
+      setGames(
+        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      );
     };
     fetchGames();
   }, []);
@@ -35,7 +45,13 @@ const SelectGame = ({ onGameSelect }) => {
           ))}
         </Select>
       </FormControl>
-      <Button variant="contained" color="primary" onClick={handleSubmit} disabled={!selectedGame} sx={{ mt: 2 }}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSubmit}
+        disabled={!selectedGame}
+        sx={{ mt: 2 }}
+      >
         경기 선택
       </Button>
     </Box>

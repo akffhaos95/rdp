@@ -1,29 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { db } from "../firebase";
+import { Box, Card, Grid, Typography, css } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import {
-  TextField,
-  Button,
-  Box,
-  Typography,
-  List,
-  Slide,
-  Grid,
-  Card,
-  css,
-} from "@mui/material";
-import {
-  collection,
   addDoc,
-  getDocs,
+  collection,
   doc,
-  updateDoc,
+  getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
+
 import AddIcon from "@mui/icons-material/Add";
 import { PlayerCard } from "../components/player/PlayerCard.tsx";
-import theme from "../style/Theme";
+import PlayerForm from "../components/player/PlayerForm";
+import { db } from "../firebase";
 import main_component from "../style/component.style";
+import theme from "../style/Theme";
 
 /** @jsxImportSource @emotion/react */
 function Player() {
@@ -77,61 +69,7 @@ function Player() {
 
   return (
     <Box>
-      <Typography variant="h4" gutterBottom style={{ fontWeight: 600 }}>
-        선수 등록
-      </Typography>
-
-      {/* Add Player Button */}
-      <Button
-        onClick={toggleAddForm}
-        variant="contained"
-        color="primary"
-        startIcon={<AddIcon />}
-        style={{ marginBottom: 20, background: theme.main }}
-      >
-        새로운 선수 등록
-      </Button>
-
-      {/* Slideout Add Player Form */}
-      <Slide direction="left" in={showAddForm} mountOnEnter unmountOnExit>
-        <Box>
-          <form onSubmit={handleSubmit}>
-            <Box mb={2}>
-              <TextField
-                label="선수 이름"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                fullWidth
-                required
-              />
-            </Box>
-            <Box mb={2}>
-              <TextField
-                label="등번호"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-                fullWidth
-                required
-              />
-            </Box>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              style={{ marginRight: 10 }}
-            >
-              저장
-            </Button>
-            <Button
-              onClick={() => setShowAddForm(false)}
-              variant="contained"
-              color="secondary"
-            >
-              취소
-            </Button>
-          </form>
-        </Box>
-      </Slide>
+      <PlayerForm players={players} setPlayers={setPlayers} />
 
       {/* Player List */}
       <Typography variant="h5" gutterBottom mt={4}>
@@ -151,11 +89,6 @@ function Player() {
           </Card>
         </Grid>
       </Grid>
-      {/* <List>
-				{players.map((player) => (
-					<PlayerCard player={player} updateList={updateList} />
-				))}
-			</List> */}
     </Box>
   );
 }

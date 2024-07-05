@@ -1,34 +1,29 @@
+import React, { useState } from "react";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
+  TextField,
   Button,
-  Card,
-  IconButton,
+  Typography,
   List,
   ListItem,
-  ListItemSecondaryAction,
   ListItemText,
-  TextField,
-  Typography,
+  ListItemSecondaryAction,
+  IconButton,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Card,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { db } from "../../firebase";
 import {
   collection,
-  doc,
   getDocs,
-  query,
+  doc,
   updateDoc,
+  query,
   where,
 } from "firebase/firestore";
-import { db, storage } from "../../firebase";
-import { getDownloadURL, list, ref } from "firebase/storage";
-
-import EditIcon from "@mui/icons-material/Edit";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SportsBaseballIcon from "@mui/icons-material/SportsBaseball";
 import theme from "../../style/Theme";
-
 type Player = {
   id: string;
   number: string;
@@ -44,18 +39,8 @@ export const PlayerCard = ({
 }) => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  const [records, setRecords] = useState<any>({});
-  const [editPlayerId, setEditPlayerId] = useState<string | null>(null);
-  const [imageURL, setImageURL] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchImageURL = async () => {
-      const url = await getPlayerImageURL(player.id);
-      setImageURL(url);
-    };
-
-    fetchImageURL();
-  }, [player.id]);
+  const [records, setRecords] = useState<any>({}); // state to store player records
+  const [editPlayerId, setEditPlayerId] = useState<string | null>(null); // state to track which player is in edit mode
 
   const fetchRecords = async (playerId: string) => {
     const gamesSnapshot = await getDocs(collection(db, "games"));
@@ -81,31 +66,30 @@ export const PlayerCard = ({
       [playerId]: playerRecords,
     }));
   };
-
   const handleEdit = (
     playerId: string,
     playerName: string,
     playerNumber: string
   ) => {
-    setEditPlayerId(playerId);
-    setName(playerName);
-    setNumber(playerNumber);
+    setEditPlayerId(playerId); // set edit mode for this player
+    setName(playerName); // set initial name in edit mode
+    setNumber(playerNumber); // set initial number in edit mode
   };
-
   const handleCancelEdit = () => {
-    setEditPlayerId(null);
-    setName("");
-    setNumber("");
+    setEditPlayerId(null); // exit edit mode
+    setName(""); // clear name input
+    setNumber(""); // clear number input
   };
-
   const handleSaveEdit = async (playerId: string) => {
     try {
       await updateDoc(doc(db, "players", playerId), {
         name,
         number,
       });
-      setEditPlayerId(null);
+      setEditPlayerId(null); // exit edit mode
       alert("선수 정보가 성공적으로 수정되었습니다.");
+      // Refresh player list
+
       updateList();
     } catch (error) {
       console.error("Error updating player: ", error);
@@ -117,33 +101,7 @@ export const PlayerCard = ({
       <Typography variant="h5" component="div">
         {`${player.name} (#${player.number})`}
       </Typography>
-      {imageURL ? (
-        <img
-          src={imageURL}
-          alt={`${player.name}'s photo`}
-          style={{ width: "100%", height: "auto" }}
-        />
-      ) : (
-        <SportsBaseballIcon style={{ fontSize: 250 }} />
-      )}
+      <SportsBaseballIcon style={{ fontSize: 250 }} />
     </Card>
   );
-};
-
-const getPlayerImageURL = async (playerId: string) => {
-  try {
-    const imageRef = ref(storage, `players/${playerId}`);
-    const listResult = await list(ref(storage, "players/"));
-
-    const item = listResult.items.find((itemRef) => itemRef.name === playerId);
-    if (item) {
-      const imageURL = await getDownloadURL(imageRef);
-      return imageURL;
-    } else {
-      return null; // 이미지가 존재하지 않는 경우
-    }
-  } catch (error) {
-    console.error("Error fetching player image:", error);
-    return null;
-  }
 };

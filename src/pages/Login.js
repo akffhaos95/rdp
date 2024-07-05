@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { auth } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { TextField, Button, Box, Typography } from '@mui/material';
+import React, { useState } from "react";
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { TextField, Button, Box, Typography } from "@mui/material";
 
 function Login({ onLogin }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,14 +13,16 @@ function Login({ onLogin }) {
       await signInWithEmailAndPassword(auth, email, password);
       onLogin();
     } catch (error) {
-      console.error('Error logging in: ', error);
-      alert('로그인 실패');
+      console.error("Error logging in: ", error);
+      alert("로그인 실패");
     }
   };
 
   return (
     <Box>
-      <Typography variant="h4" gutterBottom>로그인</Typography>
+      <Typography variant="h4" gutterBottom>
+        로그인
+      </Typography>
       <form onSubmit={handleSubmit}>
         <Box mb={2}>
           <TextField
@@ -42,7 +44,9 @@ function Login({ onLogin }) {
             required
           />
         </Box>
-        <Button type="submit" variant="contained" color="primary">로그인</Button>
+        <Button type="submit" variant="contained" color="primary">
+          로그인
+        </Button>
       </form>
     </Box>
   );
