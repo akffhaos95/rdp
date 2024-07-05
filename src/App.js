@@ -5,10 +5,10 @@ import Player from "./pages/Player";
 import GameRegistration from "./pages/Game";
 import GameRecords from "./pages/GameRecords";
 import { createTheme, ThemeProvider } from "@mui/material";
-
+import "./style/font.css";
 const theme = createTheme({
   typography: {
-    fontFamily: "'Noto Sans KR', sans-serif", //원하는 폰트를 여기다 적용하면 전체 폰트 변경됨.
+    fontFamily: "Noto Serif KR", //font.css파일에 @import 넣은 후에 fontFamily는 이곳에 적용
     //각 css에서 font-weight, font-size 수정해서 굵기와 크기 변경 가능
   },
 });
