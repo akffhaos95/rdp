@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { TextField, Button, Box, Typography, List, Slide } from "@mui/material";
+import { TextField, Button, Box, Typography, List, Slide, Grid, Card, css } from "@mui/material";
 import { collection, addDoc, getDocs, doc, updateDoc, query, where } from "firebase/firestore";
 import AddIcon from "@mui/icons-material/Add";
 import { PlayerCard } from "../components/player/PlayerCard.tsx";
+import theme from "../style/Theme";
+import main_component from "../style/component.style";
 
+/** @jsxImportSource @emotion/react */
 function Player() {
 	const [name, setName] = useState("");
 	const [number, setNumber] = useState("");
@@ -55,7 +58,7 @@ function Player() {
 			</Typography>
 
 			{/* Add Player Button */}
-			<Button onClick={toggleAddForm} variant="contained" color="primary" startIcon={<AddIcon />} style={{ marginBottom: 20 }}>
+			<Button onClick={toggleAddForm} variant="contained" color="primary" startIcon={<AddIcon />} style={{ marginBottom: 20, background: theme.main }}>
 				새로운 선수 등록
 			</Button>
 
@@ -83,11 +86,25 @@ function Player() {
 			<Typography variant="h5" gutterBottom mt={4}>
 				등록된 선수 목록
 			</Typography>
-			<List>
+			<Grid container style={{ background: theme.bg }}>
+				{players.map((player) => (
+					<Grid xs={2.4}>
+						<PlayerCard player={player} updateList={updateList} />
+					</Grid>
+				))}
+				<Grid xs={2.4}>
+					<Card css={main_component.card_add}>
+						<Typography variant="h1" component="div" style={{ margin: "auto" }}>
+							+
+						</Typography>
+					</Card>
+				</Grid>
+			</Grid>
+			{/* <List>
 				{players.map((player) => (
 					<PlayerCard player={player} updateList={updateList} />
 				))}
-			</List>
+			</List> */}
 		</Box>
 	);
 }
