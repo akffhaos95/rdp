@@ -35,17 +35,15 @@ type Player = {
   name: string;
 };
 
-export const PlayerCard = ({
-  player,
-  updateList,
-}: {
+type PlayerCardProps = {
   player: Player;
   updateList: () => void;
-}) => {
+  onClick: (player: Player) => void; // Add onClick prop
+};
+
+const PlayerCard = ({ player, updateList, onClick }: PlayerCardProps) => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  const [records, setRecords] = useState<any>({});
-  const [editPlayerId, setEditPlayerId] = useState<string | null>(null);
   const [imageURL, setImageURL] = useState<string | null>(null);
 
   useEffect(() => {
@@ -57,63 +55,8 @@ export const PlayerCard = ({
     fetchImageURL();
   }, [player.id]);
 
-  const fetchRecords = async (playerId: string) => {
-    const gamesSnapshot = await getDocs(collection(db, "games"));
-    const playerRecords: { gameId: string; opponent: any }[] = [];
-
-    for (const gameDoc of gamesSnapshot.docs) {
-      const recordsQuery = query(
-        collection(db, "games", gameDoc.id, "records"),
-        where("batter", "==", playerId)
-      );
-      const recordsSnapshot = await getDocs(recordsQuery);
-      recordsSnapshot.forEach((doc) =>
-        playerRecords.push({
-          ...doc.data(),
-          gameId: gameDoc.id,
-          opponent: gameDoc.data().opponent,
-        })
-      );
-    }
-
-    setRecords((prevRecords: any) => ({
-      ...prevRecords,
-      [playerId]: playerRecords,
-    }));
-  };
-
-  const handleEdit = (
-    playerId: string,
-    playerName: string,
-    playerNumber: string
-  ) => {
-    setEditPlayerId(playerId);
-    setName(playerName);
-    setNumber(playerNumber);
-  };
-
-  const handleCancelEdit = () => {
-    setEditPlayerId(null);
-    setName("");
-    setNumber("");
-  };
-
-  const handleSaveEdit = async (playerId: string) => {
-    try {
-      await updateDoc(doc(db, "players", playerId), {
-        name,
-        number,
-      });
-      setEditPlayerId(null);
-      alert("선수 정보가 성공적으로 수정되었습니다.");
-      updateList();
-    } catch (error) {
-      console.error("Error updating player: ", error);
-    }
-  };
-
   return (
-    <Card style={{ margin: 15, height: 230 }}>
+    <Card style={{ margin: 15, height: 230 }} onClick={() => onClick(player)}>
       <Typography variant="h5" component="div">
         {`${player.name} (#${player.number})`}
       </Typography>
@@ -140,10 +83,12 @@ const getPlayerImageURL = async (playerId: string) => {
       const imageURL = await getDownloadURL(imageRef);
       return imageURL;
     } else {
-      return null; // 이미지가 존재하지 않는 경우
+      return null;
     }
   } catch (error) {
     console.error("Error fetching player image:", error);
     return null;
   }
 };
+
+export default PlayerCard;

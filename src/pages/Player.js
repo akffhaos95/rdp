@@ -1,28 +1,18 @@
-import { Box, Card, Grid, Typography, css } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
+// Player.tsx
 
-import AddIcon from "@mui/icons-material/Add";
-import { PlayerCard } from "../components/player/PlayerCard.tsx";
-import PlayerForm from "../components/player/PlayerForm";
+import { Box, Card, Dialog, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+
+import PlayerCard from "../components/player/PlayerCard";
+import PlayerDetail from "../components/player/PlayerDetail";
 import { db } from "../firebase";
-import main_component from "../style/component.style";
-import theme from "../style/Theme";
 
 /** @jsxImportSource @emotion/react */
 function Player() {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
   const [players, setPlayers] = useState([]);
-  const [showAddForm, setShowAddForm] = useState(false); // state to toggle new player form
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -34,28 +24,6 @@ function Player() {
     fetchPlayers();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const docRef = await addDoc(collection(db, "players"), {
-        name,
-        number,
-      });
-      console.log("Document written with ID: ", docRef.id);
-      setName("");
-      setNumber("");
-      alert("선수가 성공적으로 등록되었습니다.");
-      // Refresh player list
-      const querySnapshot = await getDocs(collection(db, "players"));
-      setPlayers(
-        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      );
-      setShowAddForm(false); // hide add form after successful submission
-    } catch (error) {
-      console.error("Error adding player: ", error);
-    }
-  };
-
   const updateList = async () => {
     const querySnapshot = await getDocs(collection(db, "players"));
     setPlayers(
@@ -63,32 +31,54 @@ function Player() {
     );
   };
 
-  const toggleAddForm = () => {
-    setShowAddForm(!showAddForm); // toggle add form visibility
+  const handlePlayerClick = (player) => {
+    setSelectedPlayer(player);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedPlayer(null);
   };
 
   return (
     <Box>
-      <PlayerForm players={players} setPlayers={setPlayers} />
-
-      {/* Player List */}
       <Typography variant="h5" gutterBottom mt={4}>
         등록된 선수 목록
       </Typography>
-      <Grid container style={{ background: theme.bg }}>
+      <Grid container style={{ background: "#f5f5f5" }}>
         {players.map((player) => (
-          <Grid xs={2.4}>
-            <PlayerCard player={player} updateList={updateList} />
+          <Grid item xs={2.4} key={player.id}>
+            <PlayerCard
+              player={player}
+              updateList={updateList}
+              onClick={handlePlayerClick}
+            />
           </Grid>
         ))}
-        <Grid xs={2.4}>
-          <Card css={main_component.card_add}>
-            <Typography variant="h1" component="div" style={{ margin: "auto" }}>
+        <Grid item xs={2.4}>
+          <Card
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: 230,
+            }}
+          >
+            <Typography variant="h1" component="div">
               +
             </Typography>
           </Card>
         </Grid>
       </Grid>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        fullWidth={true}
+        maxWidth={"xl"}
+      >
+        {selectedPlayer && <PlayerDetail player={selectedPlayer} />}
+      </Dialog>
     </Box>
   );
 }
