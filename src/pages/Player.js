@@ -7,7 +7,7 @@ import { collection, getDocs } from "firebase/firestore";
 import PlayerCard from "../components/player/PlayerCard";
 import PlayerDetail from "../components/player/PlayerDetail";
 import { db } from "../firebase";
-
+import main_component from "../style/component.style";
 /** @jsxImportSource @emotion/react */
 function Player() {
   const [players, setPlayers] = useState([]);
@@ -18,7 +18,7 @@ function Player() {
     const fetchPlayers = async () => {
       const querySnapshot = await getDocs(collection(db, "players"));
       setPlayers(
-        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
       );
     };
     fetchPlayers();
@@ -27,7 +27,7 @@ function Player() {
   const updateList = async () => {
     const querySnapshot = await getDocs(collection(db, "players"));
     setPlayers(
-      querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
     );
   };
 
@@ -57,14 +57,7 @@ function Player() {
           </Grid>
         ))}
         <Grid item xs={2.4}>
-          <Card
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: 230,
-            }}
-          >
+          <Card css={main_component.card_add}>
             <Typography variant="h1" component="div">
               +
             </Typography>
