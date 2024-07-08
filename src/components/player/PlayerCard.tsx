@@ -10,14 +10,12 @@ import {
 } from "firebase/firestore";
 import { db, storage } from "../../firebase";
 import { getDownloadURL, list, ref } from "firebase/storage";
-
-import EditIcon from "@mui/icons-material/Edit";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import "../../style/font.css";
 import SportsBaseballIcon from "@mui/icons-material/SportsBaseball";
 import {card_component} from "../../style/component.style";
 /** @jsxImportSource @emotion/react */
 
-import { css } from "@emotion/react";
+
 type Player = {
   id: string;
   number: string;

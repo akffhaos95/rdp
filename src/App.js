@@ -1,5 +1,12 @@
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { AppBar, Toolbar, Button, Container, Box } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Container,
+  Box,
+  Typography,
+} from "@mui/material";
 import Player from "./pages/Player";
 import GameRegistration from "./pages/Game";
 import GameRecords from "./pages/GameRecords";
@@ -19,6 +26,9 @@ function App() {
       <Router>
         <AppBar position="static">
           <Toolbar style={{ background: theme.main }}>
+            <Typography variant="h5" style={{ fontFamily: "Rye" }}>
+              RASCAL
+            </Typography>
             <Button color="inherit" component={Link} to="/player">
               선수
             </Button>
