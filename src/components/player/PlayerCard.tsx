@@ -1,17 +1,4 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Button,
-  Card,
-  IconButton,
-  List,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import {
   collection,
@@ -27,8 +14,10 @@ import { getDownloadURL, list, ref } from "firebase/storage";
 import EditIcon from "@mui/icons-material/Edit";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SportsBaseballIcon from "@mui/icons-material/SportsBaseball";
-import theme from "../../style/Theme";
+import {card_component} from "../../style/component.style";
+/** @jsxImportSource @emotion/react */
 
+import { css } from "@emotion/react";
 type Player = {
   id: string;
   number: string;
@@ -40,10 +29,7 @@ type PlayerCardProps = {
   updateList: () => void;
   onClick: (player: Player) => void; // Add onClick prop
 };
-
-const PlayerCard = ({ player, updateList, onClick }: PlayerCardProps) => {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+const PlayerCard = ({ player, onClick }: PlayerCardProps) => {
   const [imageURL, setImageURL] = useState<string | null>(null);
 
   useEffect(() => {
@@ -56,10 +42,10 @@ const PlayerCard = ({ player, updateList, onClick }: PlayerCardProps) => {
   }, [player.id]);
 
   return (
-    <Card style={{ margin: 15, height: 230 }} onClick={() => onClick(player)}>
-      <Typography variant="h5" component="div">
-        {`${player.name} (#${player.number})`}
-      </Typography>
+    <Card
+      css={card_component.card}
+      onClick={() => onClick(player)}
+    >
       {imageURL ? (
         <img
           src={imageURL}
@@ -67,8 +53,15 @@ const PlayerCard = ({ player, updateList, onClick }: PlayerCardProps) => {
           style={{ width: "100%", height: "auto" }}
         />
       ) : (
-        <SportsBaseballIcon style={{ fontSize: 250 }} />
+        <SportsBaseballIcon style={{ fontSize: 240 }} />
       )}
+      <Typography
+        variant="h5"
+        component="div"
+        css={card_component.card_name}
+      >
+        {`${player.name} (#${player.number})`}
+      </Typography>
     </Card>
   );
 };

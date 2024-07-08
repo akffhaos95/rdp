@@ -1,12 +1,10 @@
 import { css } from "@emotion/react";
 import theme from "./Theme";
-const main_component = {
+export const card_component = {
   card: css`
     margin: 15px 15px 15px 15px;
     height: 230px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
   `,
   card_add: css`
     margin: 15px 15px 15px 15px;
@@ -23,5 +21,12 @@ const main_component = {
       // opacity: 45%;
     }
   `,
+  card_name:css`
+  position:absolute;
+  bottom:5px;
+  right:5px;
+  font-weight:600;
+  font-size:27px;
+  `
 };
-export default main_component;
+

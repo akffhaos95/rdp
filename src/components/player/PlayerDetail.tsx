@@ -1,7 +1,8 @@
 // PlayerDetail.tsx
 
 import styled, { keyframes } from "styled-components";
-
+import SportsBaseballIcon from "@mui/icons-material/SportsBaseball";
+import BoyIcon from "@mui/icons-material/Boy";
 import React from "react";
 
 interface Player {
@@ -49,7 +50,10 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  min-width: 100%;
+
+  max-width: 1326px;
+  overflow: hidden;
   height: 100%;
   background: #f0f0f0;
   border-radius: 10px;
@@ -57,8 +61,8 @@ const Card = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   position: relative;
-  background: linear-gradient(135deg, #f0f0f0 25%, transparent 25%) -50px 0/
-      100px 100px,
+  background:
+    linear-gradient(135deg, #f0f0f0 25%, transparent 25%) -50px 0/ 100px 100px,
     linear-gradient(225deg, #f0f0f0 25%, transparent 25%) -50px 0/ 100px 100px,
     linear-gradient(315deg, #f0f0f0 25%, transparent 25%),
     linear-gradient(45deg, #f0f0f0 25%, transparent 25%);
@@ -87,9 +91,11 @@ const PhotoContainer = styled.div`
 `;
 
 const Photo = styled.img`
-  width: auto;
+  width: 500px;
   max-height: 100%;
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
   opacity: 0;
   transform: translateX(-50%);
   animation: ${fadeInFromLeft} 2s forwards;
@@ -169,7 +175,30 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
   return (
     <Card>
       <PhotoContainer>
-        <Photo src={player.photoURL} alt={player.name} />
+        {player.photoURL ? (
+          <Photo src={player.photoURL} alt={player.name} />
+        ) : (
+          <div
+            style={{
+              position: "relative",
+              display: "block",
+              background: "white",
+              height: "380px",
+              marginRight: "auto",
+            }}
+          >
+            <SportsBaseballIcon style={{ fontSize: 250, color: "black" }} />
+            <BoyIcon
+              style={{
+                fontSize: 250,
+                marginRight: "auto",
+                position: "absolute",
+                left: 0,
+                top: 150,
+              }}
+            />
+          </div>
+        )}
       </PhotoContainer>
       <InfoContainer>
         <Number>{player.number}</Number>

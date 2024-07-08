@@ -7,7 +7,7 @@ import { collection, getDocs } from "firebase/firestore";
 import PlayerCard from "../components/player/PlayerCard";
 import PlayerDetail from "../components/player/PlayerDetail";
 import { db } from "../firebase";
-import main_component from "../style/component.style";
+import {card_component} from "../style/component.style";
 /** @jsxImportSource @emotion/react */
 function Player() {
   const [players, setPlayers] = useState([]);
@@ -57,7 +57,7 @@ function Player() {
           </Grid>
         ))}
         <Grid item xs={4} sm={2} md={2}>
-          <Card css={main_component.card_add}>
+          <Card css={card_component.card_add}>
             <Typography variant="h1" component="div">
               +
             </Typography>
