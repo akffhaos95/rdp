@@ -48,7 +48,7 @@ function Player() {
       </Typography>
       <Grid container style={{ background: "#f5f5f5" }}>
         {players.map((player) => (
-          <Grid item xs={2.4} key={player.id}>
+          <Grid item xs={4} sm={2} md={2} key={player.id}>
             <PlayerCard
               player={player}
               updateList={updateList}
@@ -56,7 +56,7 @@ function Player() {
             />
           </Grid>
         ))}
-        <Grid item xs={2.4}>
+        <Grid item xs={4} sm={2} md={2}>
           <Card css={main_component.card_add}>
             <Typography variant="h1" component="div">
               +
