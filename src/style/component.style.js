@@ -26,7 +26,9 @@ export const card_component = {
   bottom:5px;
   right:5px;
   font-weight:600;
-  font-size:27px;
+  font-size:22px;
   `
 };
+export const main_component = {
 
+}
