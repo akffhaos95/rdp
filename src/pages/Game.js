@@ -6,7 +6,7 @@ import GameFilter from "../components/game/GameFilter";
 import GameList from "../components/game/GameList";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
-function GameRegistration() {
+function Game() {
   const [players, setPlayers] = useState([]);
   const [games, setGames] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
@@ -47,4 +47,4 @@ function GameRegistration() {
   );
 }
 
-export default GameRegistration;
+export default Game;

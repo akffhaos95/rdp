@@ -1,36 +1,37 @@
-import React, { useState, useEffect } from "react";
-import {
-  collection,
-  getDocs,
-  doc,
-  addDoc,
-  query,
-  orderBy,
-  limit,
-} from "firebase/firestore";
-import { db } from "../firebase";
 import {
   Box,
   Button,
   FormControl,
   InputLabel,
-  MenuItem,
-  Select,
-  Typography,
   List,
   ListItem,
   ListItemText,
-  Stepper,
+  MenuItem,
+  Select,
   Step,
   StepLabel,
+  Stepper,
+  Typography,
 } from "@mui/material";
-import SelectGame from "../components/record/SelectGame";
-import LineupRegistration from "../components/record/LineupRegistration";
+import React, { useEffect, useState } from "react";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+} from "firebase/firestore";
+
 import BaseballField from "../components/record/BaseballField";
 import CountBoard from "../components/record/CountBoard";
+import LineupRegistration from "../components/record/LineupRegistration";
 import ScoreBoard from "../components/record/ScoreBoard";
+import SelectGame from "../components/record/SelectGame";
+import { db } from "../firebase";
 
-const GameRecords = () => {
+const Record = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [selectedGame, setSelectedGame] = useState(null);
   const [lineupRegistered, setLineupRegistered] = useState(false);
@@ -256,4 +257,4 @@ const GameRecords = () => {
   );
 };
 
-export default GameRecords;
+export default Record;

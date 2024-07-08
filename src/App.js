@@ -57,8 +57,8 @@ function App() {
     <ThemeProvider theme={font_theme}>
       <Router>
         <MenuToolbar />
-        <Container>
-          <Box my={4}>
+        <Container maxWidth={false}>
+          <Box>
             <Routes>
               <Route path="/player" element={<Player />} />
               <Route path="/game" element={<Game />} />
