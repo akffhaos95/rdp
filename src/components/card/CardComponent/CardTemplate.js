@@ -12,7 +12,9 @@ const CardTemplate = ({ scale, children }) => {
     justifyContent: "center",
     alignItems: "center",
     margin: `${0.45 * scale}px`,
-    background: "#FFFFFF",
+    background: "#383635",
+    backgroundImage: "radial-gradient(circle, #606266 1px, transparent 1px)",
+    backgroundSize: "10px 10px",
     transition: "width 0.2s, height 0.2s",
   });
   return (
