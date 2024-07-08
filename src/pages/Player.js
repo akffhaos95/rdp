@@ -8,12 +8,13 @@ import PlayerCard from "../components/player/PlayerCard";
 import PlayerDetail from "../components/player/PlayerDetail";
 import { db } from "../firebase";
 import {card_component} from "../style/component.style";
+import PlayerCreate from "../components/player/PlayerCreate";
 /** @jsxImportSource @emotion/react */
 function Player() {
   const [players, setPlayers] = useState([]);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [open, setOpen] = useState(false);
-
+  const [createOpen,setCreateOpen]=useState(false);
   useEffect(() => {
     const fetchPlayers = async () => {
       const querySnapshot = await getDocs(collection(db, "players"));
@@ -40,7 +41,9 @@ function Player() {
     setOpen(false);
     setSelectedPlayer(null);
   };
-
+  const handleCreate = () => {
+    setCreateOpen(!createOpen);
+  };
   return (
     <Box>
       <Typography variant="h5" gutterBottom mt={4}>
@@ -57,7 +60,7 @@ function Player() {
           </Grid>
         ))}
         <Grid item xs={4} sm={2} md={2}>
-          <Card css={card_component.card_add}>
+          <Card css={card_component.card_add} onClick={handleCreate}>
             <Typography variant="h1" component="div">
               +
             </Typography>
@@ -71,6 +74,15 @@ function Player() {
         maxWidth={"xl"}
       >
         {selectedPlayer && <PlayerDetail player={selectedPlayer} />}
+      </Dialog>
+      <Dialog
+        open={createOpen}
+        onClose={handleCreate}
+        fullWidth={true}
+        maxWidth={"xl"}
+        
+      >
+       <PlayerCreate/>
       </Dialog>
     </Box>
   );
