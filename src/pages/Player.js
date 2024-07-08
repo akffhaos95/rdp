@@ -79,10 +79,10 @@ function Player() {
         open={createOpen}
         onClose={handleCreate}
         fullWidth={true}
-        maxWidth={"xl"}
+        maxWidth={"md"}
         
       >
-       <PlayerCreate/>
+       <PlayerCreate handleClose={()=>setCreateOpen(false)}/>
       </Dialog>
     </Box>
   );

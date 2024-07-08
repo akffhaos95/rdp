@@ -5,11 +5,14 @@ import {
   TextField,
   ToggleButton,
   ToggleButtonGroup,
+  Button,
 } from "@mui/material";
 import FaceIcon from "@mui/icons-material/Face";
+import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
+import theme from "../../style/Theme";
 
-const PlayerCreate = () => {
+const PlayerCreate = ({ handleClose }: { handleClose: () => void }) => {
   const [devices, setDevices] = useState(() => ["phone"]);
   const handleDevices = (
     event: React.MouseEvent<HTMLElement>,
@@ -20,7 +23,18 @@ const PlayerCreate = () => {
     }
   };
   return (
-    <Card style={{ height: "fit-content", minHeight: 100, padding: 15 }}>
+    <Card
+      style={{
+        height: "fit-content",
+        minHeight: 100,
+        padding: 15,
+        position: "relative",
+      }}
+    >
+      <CloseIcon
+        style={{ position: "absolute", right: 20 }}
+        onClick={handleClose}
+      />
       <Typography variant="h5" style={{ fontWeight: 500 }}>
         신규 선수 등록
       </Typography>
@@ -78,6 +92,12 @@ const PlayerCreate = () => {
           </ToggleButtonGroup>
         </Grid>
       </Grid>
+      <Button
+        style={{ background: theme.main, color: "white" }}
+        variant="contained"
+      >
+        선수 생성
+      </Button>
     </Card>
   );
 };
