@@ -10,13 +10,12 @@ import {
 } from "@mui/material";
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material";
-
+import TemporaryDrawer from "./SideBar";
 import Card from "./pages/Card";
 import Footer from "./components/Footer";
 import Game from "./pages/Game";
 import Player from "./pages/Player";
 import Record from "./pages/Record";
-import { main_component } from "./style/component.style";
 import theme from "./style/Theme";
 
 const font_theme = createTheme({
@@ -27,11 +26,12 @@ const font_theme = createTheme({
 });
 
 function MenuToolbar() {
-  const theme = useTheme();
 
   return (
     <AppBar position="static">
+      
       <Toolbar style={{ background: theme.main }}>
+     
         <Typography variant="h5" style={{ fontFamily: "Rye" }}>
           RASCAL
         </Typography>
@@ -47,6 +47,7 @@ function MenuToolbar() {
         <Button color="inherit" component={Link} to="/card">
           카드
         </Button>
+        <TemporaryDrawer/>
       </Toolbar>
     </AppBar>
   );
