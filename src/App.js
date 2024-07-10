@@ -17,6 +17,8 @@ import Game from "./pages/Game";
 import Player from "./pages/Player";
 import Record from "./pages/Record";
 import theme from "./style/Theme";
+import { useMediaQuery } from '@mui/material';
+
 
 const font_theme = createTheme({
   typography: {
@@ -26,28 +28,30 @@ const font_theme = createTheme({
 });
 
 function MenuToolbar() {
-
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   return (
     <AppBar position="static">
       
       <Toolbar style={{ background: theme.main }}>
      
+        {isMobile ? 
+        <TemporaryDrawer/>:
+        <>
         <Typography variant="h5" style={{ fontFamily: "Rye" }}>
-          RASCAL
-        </Typography>
-        <Button color="inherit" component={Link} to="/player">
-          선수
-        </Button>
-        <Button color="inherit" component={Link} to="/game">
-          경기 등록
-        </Button>
-        <Button color="inherit" component={Link} to="/record">
-          경기 기록
-        </Button>
-        <Button color="inherit" component={Link} to="/card">
-          카드
-        </Button>
-        <TemporaryDrawer/>
+        RASCAL
+      </Typography>
+      <Button color="inherit" component={Link} to="/player">
+        선수
+      </Button>
+      <Button color="inherit" component={Link} to="/game">
+        경기 등록
+      </Button>
+      <Button color="inherit" component={Link} to="/record">
+        경기 기록
+      </Button>
+      <Button color="inherit" component={Link} to="/card">
+        카드
+      </Button></>}
       </Toolbar>
     </AppBar>
   );

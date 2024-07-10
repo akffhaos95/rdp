@@ -16,6 +16,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Typography } from '@mui/material';
 // import LoginIcon from '@mui/icons-material/Login'; //로그인아이콘
 import theme from './style/Theme';
+import { Link } from "react-router-dom";
+
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -23,7 +25,9 @@ export default function TemporaryDrawer() {
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
-
+  const to_link = [
+    "/player","/game","/record","/card"
+  ]
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       
@@ -31,13 +35,13 @@ export default function TemporaryDrawer() {
         <ListItem> <Typography variant="h5" style={{ fontFamily: "Rye" ,color:theme.main}}>
           RASCAL
         </Typography></ListItem>
-        {['선수',"경기 등록","경기 기록","카드"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {['선수',"경기 기록","경기 등록","카드"].map((text, index) => (
+          <ListItem key={text} disablePadding  component={Link} to={to_link[index]}>
             <ListItemButton>
               <ListItemIcon>
                 {index ==0? <Person2Icon/> : index==3? <StyleIcon/> : <SportsCricketIcon/>}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={text} style={{color:theme.text_70}} />
             </ListItemButton>
           </ListItem>
         ))}
