@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: "VITRO CORE";
+  src: url("/fonts/VITRO Font OFT/VITRO CORE OFT.oft") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "VITRO INSPIRE";
+  src: url("/fonts/VITRO Font OFT/VITRO INSPIRE OFT.oft") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "VITRO PRIDE";
+  src: url("/fonts/VITRO Font OFT/VITRO PRIDE OFT.oft") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "VITRO CORE", sans-serif;
+}

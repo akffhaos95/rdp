@@ -1,16 +1,17 @@
-import Box from "@mui/material/Box";
 import CardTemplate from "./CardTemplate";
 import Name from "./Name";
 import Number from "./Number";
+import Photo from "./Photo";
 import React from "react";
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/system";
+import StatContainer from "./StatContainer";
 
 const CardFront = ({ card, scale }) => {
   return (
     <CardTemplate scale={scale}>
       <Number number={card.number} scale={scale} />
       <Name name={card.name} scale={scale} />
+      <StatContainer scale={scale} />
+      <Photo name={card.name} scale={scale} />
     </CardTemplate>
   );
 };

@@ -10,7 +10,7 @@ const Name = ({ name, scale }) => {
     right: `3%`,
     color: "white",
     fontSize: `${scale}px`,
-    fontFamily: "Noto Serif KR",
+    fontFamily: "VITRO CORE",
     margin: `${0.1 * scale}px`,
     borderRadius: "5px",
     display: "flex",
