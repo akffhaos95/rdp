@@ -8,9 +8,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
+import Person2Icon from '@mui/icons-material/Person2';
+import SportsCricketIcon from '@mui/icons-material/SportsCricket';
+import StyleIcon from '@mui/icons-material/Style';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Typography } from '@mui/material';
+// import LoginIcon from '@mui/icons-material/Login'; //로그인아이콘
+import theme from './style/Theme';
+
 export default function TemporaryDrawer() {
   const [open, setOpen] = React.useState(false);
 
@@ -20,12 +26,16 @@ export default function TemporaryDrawer() {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        <ListItem> <Typography variant="h5" style={{ fontFamily: "Rye" ,color:theme.main}}>
+          RASCAL
+        </Typography></ListItem>
+        {['선수',"경기 등록","경기 기록","카드"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index ==0? <Person2Icon/> : index==3? <StyleIcon/> : <SportsCricketIcon/>}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -34,11 +44,11 @@ export default function TemporaryDrawer() {
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {['로그아웃'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon  />}
+               <LogoutIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
