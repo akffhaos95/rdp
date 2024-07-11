@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@mui/system";
-
+// import "../../../style/font.css"
 const Name = ({ name, scale }) => {
   if (name === null) return null;
 

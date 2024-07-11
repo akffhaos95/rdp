@@ -28,3 +28,22 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "VITRO CORE";
+  src: url("../../public/fonts/VITRO_Font_OTF/VITRO_CORE_OTF.otf") format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "VITRO INSPIRE";
+  src: url("../../public/fonts/VITRO_Font_OTF/VITRO_INSPIRE_OTF.otf") format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "VITRO PRIDE";
+  src: url("../../public/fonts/VITRO_Font_OTF/VITRO_PRIDE_OTF.otf") format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
