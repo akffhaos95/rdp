@@ -7,14 +7,14 @@ import { collection, getDocs } from "firebase/firestore";
 import PlayerCard from "../components/player/PlayerCard";
 import PlayerDetail from "../components/player/PlayerDetail";
 import { db } from "../firebase";
-import {card_component} from "../style/component.style";
+import { card_component } from "../style/component.style";
 import PlayerCreate from "../components/player/PlayerCreate";
 /** @jsxImportSource @emotion/react */
 function Player() {
   const [players, setPlayers] = useState([]);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [open, setOpen] = useState(false);
-  const [createOpen,setCreateOpen]=useState(false);
+  const [createOpen, setCreateOpen] = useState(false);
   useEffect(() => {
     const fetchPlayers = async () => {
       const querySnapshot = await getDocs(collection(db, "players"));
@@ -71,7 +71,7 @@ function Player() {
         open={open}
         onClose={handleClose}
         fullWidth={true}
-        maxWidth={"xl"}
+        maxWidth={"md"}
       >
         {selectedPlayer && <PlayerDetail player={selectedPlayer} />}
       </Dialog>
@@ -80,9 +80,8 @@ function Player() {
         onClose={handleCreate}
         fullWidth={true}
         maxWidth={"md"}
-        
       >
-       <PlayerCreate handleClose={()=>setCreateOpen(false)}/>
+        <PlayerCreate handleClose={() => setCreateOpen(false)} />
       </Dialog>
     </Box>
   );

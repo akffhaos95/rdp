@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 import SportsBaseballIcon from "@mui/icons-material/SportsBaseball";
 import BoyIcon from "@mui/icons-material/Boy";
 import React from "react";
-
+import { useMediaQuery } from "@mui/material";
 interface Player {
   name: string;
   number: string;
@@ -81,8 +81,9 @@ const Card = styled.div`
 
 const PhotoContainer = styled.div`
   flex: 0 0 auto;
-  width: 100%;
-  max-height: 50%;
+  width: 300px;
+  height: 350px;
+  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,14 +92,13 @@ const PhotoContainer = styled.div`
 `;
 
 const Photo = styled.img`
-  width: 500px;
-  max-height: 100%;
   transition:
     transform 0.5s ease-in-out,
     opacity 0.5s ease-in-out;
   opacity: 0;
-  transform: translateX(-50%);
+  transform: translateX(0%);
   animation: ${fadeInFromLeft} 2s forwards;
+  margin-right: auto;
 `;
 
 const InfoContainer = styled.div`
@@ -171,35 +171,41 @@ const Stats = styled.div`
 // PlayerDetail 컴포넌트
 const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
   const stats = player?.stats ?? []; // stats가 undefined일 경우 빈 배열 사용
-
+  const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down("sm"));
   return (
     <Card>
-      <PhotoContainer>
-        {player.photoURL ? (
-          <Photo src={player.photoURL} alt={player.name} />
-        ) : (
-          <div
+      {/* <PhotoContainer> */}
+      {player.photoURL ? (
+        <Photo
+          src={player.photoURL}
+          alt={player.name}
+          style={
+            isMobile ? { width: 170, height: 220 } : { width: 250, height: 330 }
+          }
+        />
+      ) : (
+        <div
+          style={{
+            position: "relative",
+            display: "block",
+            background: "white",
+            height: "380px",
+            marginRight: "auto",
+          }}
+        >
+          <SportsBaseballIcon style={{ fontSize: 250, color: "black" }} />
+          <BoyIcon
             style={{
-              position: "relative",
-              display: "block",
-              background: "white",
-              height: "380px",
+              fontSize: 250,
               marginRight: "auto",
+              position: "absolute",
+              left: 0,
+              top: 150,
             }}
-          >
-            <SportsBaseballIcon style={{ fontSize: 250, color: "black" }} />
-            <BoyIcon
-              style={{
-                fontSize: 250,
-                marginRight: "auto",
-                position: "absolute",
-                left: 0,
-                top: 150,
-              }}
-            />
-          </div>
-        )}
-      </PhotoContainer>
+          />
+        </div>
+      )}
+      {/* </PhotoContainer> */}
       <InfoContainer>
         <Number>{player.number}</Number>
         <Name>{player.name}</Name>
