@@ -1,4 +1,5 @@
 import CardTemplate from "./CardTemplate";
+import Comment from "./Comment";
 
 const CardBack = ({ card, scale }) => {
   console.log("back");
@@ -6,7 +7,9 @@ const CardBack = ({ card, scale }) => {
 
   return (
     <div id="back">
-      <CardTemplate scale={scale}></CardTemplate>
+      <CardTemplate scale={scale}>
+        <Comment comments={card.comments} scale={scale} />
+      </CardTemplate>
     </div>
   );
 };

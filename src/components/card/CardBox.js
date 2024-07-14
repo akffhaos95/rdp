@@ -1,5 +1,6 @@
 import CardBack from "./CardComponent/CardBack";
 import CardFront from "./CardComponent/CardFront";
+import CommentEditor from "./CardComponent/CommentEditor";
 import React from "react";
 import { styled } from "@mui/system";
 
@@ -14,13 +15,22 @@ const Container = styled("div")({
   flexWrap: "wrap",
 });
 
-const CardBox = ({ card, scale }) => {
+const CardBox = ({ card, setCard, isEdit, scale }) => {
   if (card === null) return null;
 
   return (
     <Container>
-      <CardFront card={card} scale={scale} />
-      <CardBack card={card} scale={scale} />
+      {isEdit ? (
+        <>
+          <CardFront card={card} scale={scale} />
+          <CardBack card={card} scale={scale} />
+        </>
+      ) : (
+        <>
+          <CardBack card={card} scale={scale} />
+          <CommentEditor card={card} setCard={setCard} scale={scale} />
+        </>
+      )}
     </Container>
   );
 };

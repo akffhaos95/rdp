@@ -1,11 +1,9 @@
+import { FormControlLabel, Slider, Switch } from "@mui/material";
+
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import React from "react";
-import { Slider } from "@mui/material";
 import { styled } from "@mui/system";
-
-// 선수 리스트 버튼 -> json 선수 개수만큼
-// 각 버튼 클릭 -> 선수 데이터로 useState 변경
 
 const CardListDiv = styled("div")({
   justifyContent: "center",
@@ -23,13 +21,28 @@ const CardButton = styled(Button)({
   margin: "5px",
 });
 
-const CardListBox = ({ cardList, setCard, scale, handleScaleChange }) => {
+const CardListBox = ({
+  cardList,
+  setCard,
+  scale,
+  handleScaleChange,
+  isEdit,
+  setIsEdit,
+}) => {
   const changeCard = ({ card }) => {
     setCard(card);
   };
 
+  const handleEditToggle = () => {
+    setIsEdit(!isEdit);
+  };
+
   return (
     <CardListDiv>
+      <FormControlLabel
+        control={<Switch checked={isEdit} onChange={handleEditToggle} />}
+        label="수정"
+      />
       <Slider
         value={scale}
         onChange={handleScaleChange}
@@ -40,8 +53,8 @@ const CardListBox = ({ cardList, setCard, scale, handleScaleChange }) => {
       />
       <Grid container spacing={2} margin="30px">
         {cardList.map((card) => (
-          <CardButton onClick={() => changeCard({ card })}>
-            {card["name"]}
+          <CardButton key={card.name} onClick={() => changeCard({ card })}>
+            {card.name}
           </CardButton>
         ))}
       </Grid>
