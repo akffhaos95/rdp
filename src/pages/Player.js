@@ -72,6 +72,7 @@ function Player() {
         onClose={handleClose}
         fullWidth={true}
         maxWidth={"md"}
+        style={{ overflow: "hidden" }}
       >
         {selectedPlayer && <PlayerDetail player={selectedPlayer} />}
       </Dialog>

@@ -50,9 +50,8 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 100%;
-
-  max-width: 1326px;
+  // min-width: 100%;
+  // max-width: 1326px;
   overflow: hidden;
   height: 100%;
   background: #f0f0f0;
@@ -180,7 +179,7 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
           src={player.photoURL}
           alt={player.name}
           style={
-            isMobile ? { width: 170, height: 220 } : { width: 250, height: 330 }
+            isMobile ? { width: 170, height: 200 } : { width: 250, height: 330 }
           }
         />
       ) : (
@@ -189,18 +188,26 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
             position: "relative",
             display: "block",
             background: "white",
-            height: "380px",
+            height: isMobile ? 200 : 330,
+            width: isMobile ? 170 : 250,
             marginRight: "auto",
           }}
         >
-          <SportsBaseballIcon style={{ fontSize: 250, color: "black" }} />
+          <SportsBaseballIcon
+            style={{
+              fontSize: isMobile ? 130 : 220,
+              marginLeft: isMobile ? 20 : 15,
+              color: "#212F3D  ",
+            }}
+          />
           <BoyIcon
             style={{
-              fontSize: 250,
+              fontSize: isMobile ? 130 : 220,
               marginRight: "auto",
               position: "absolute",
-              left: 0,
-              top: 150,
+              left: isMobile ? 20 : 15,
+              top: isMobile ? 77 : 130,
+              color: "#212F3D ",
             }}
           />
         </div>
