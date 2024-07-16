@@ -7,6 +7,7 @@ const theme = {
   main: "#30406a",
   bg: "#f6f6f6",
   bg_20: "#e8e8e8",
-  text_70:"#212121"
+  text_70: "#212121",
+  white_80: "#fafafa",
 };
 export default theme;

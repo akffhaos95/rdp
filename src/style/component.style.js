@@ -21,14 +21,16 @@ export const card_component = {
       // opacity: 45%;
     }
   `,
-  card_name:css`
-  position:absolute;
-  bottom:5px;
-  right:5px;
-  font-weight:600;
-  font-size:22px;
-  `
+  card_name: css`
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-weight: 600;
+    font-size: 22px;
+  `,
 };
 export const main_component = {
-
-}
+  edit_btn: css`
+    color: ${theme.bg_20};
+  `,
+};

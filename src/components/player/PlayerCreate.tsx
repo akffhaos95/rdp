@@ -11,16 +11,16 @@ import FaceIcon from "@mui/icons-material/Face";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import theme from "../../style/Theme";
+import PlayerToggle from "./PlayerToggle";
 
 const PlayerCreate = ({ handleClose }: { handleClose: () => void }) => {
-  const [devices, setDevices] = useState(() => ["phone"]);
-  const handleDevices = (
-    event: React.MouseEvent<HTMLElement>,
-    newDevices: string[]
-  ) => {
-    if (newDevices.length) {
-      setDevices(newDevices);
-    }
+  const [batter, setBatter] = useState(() => "");
+  const [pitcher, setPitcher] = useState(() => "");
+  const handleBatter = (event: any) => {
+    setBatter(event.target.value);
+  };
+  const handlePitcher = (event: any) => {
+    setPitcher(event.target.value);
   };
   return (
     <Card
@@ -58,38 +58,26 @@ const PlayerCreate = ({ handleClose }: { handleClose: () => void }) => {
           <TextField id="outlined-basic" label="선수 번호" variant="outlined" />
         </Grid>
         <Grid>
-          <ToggleButtonGroup
-            value={devices}
-            onChange={handleDevices}
-            aria-label="device"
-          >
-            <ToggleButton value="1" aria-label="1">
-              좌타
-            </ToggleButton>
-            <ToggleButton value="2" aria-label="2">
-              우타
-            </ToggleButton>
-            <ToggleButton value="3" aria-label="3">
-              양타
-            </ToggleButton>
-          </ToggleButtonGroup>
+          <PlayerToggle
+            options={[
+              { value: "좌타", name: "좌타" },
+              { value: "우타", name: "우타" },
+              { value: "양타", name: "양타" },
+            ]}
+            value={batter}
+            handleValue={handleBatter}
+          />
         </Grid>
         <Grid>
-          <ToggleButtonGroup
-            value={devices}
-            onChange={handleDevices}
-            aria-label="device"
-          >
-            <ToggleButton value="41" aria-label="4">
-              좌투
-            </ToggleButton>
-            <ToggleButton value="5" aria-label="5">
-              우투
-            </ToggleButton>
-            <ToggleButton value="6" aria-label="6">
-              양투
-            </ToggleButton>
-          </ToggleButtonGroup>
+          <PlayerToggle
+            options={[
+              { value: "좌투", name: "좌투" },
+              { value: "우투", name: "우투" },
+              { value: "양투", name: "양투" },
+            ]}
+            value={pitcher}
+            handleValue={handlePitcher}
+          />
         </Grid>
       </Grid>
       <Button
