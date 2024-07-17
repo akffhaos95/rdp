@@ -22,9 +22,10 @@ const move = keyframes`
   100% { left: 0; }
 `;
 
-const CardTemplate = ({ scale, children }) => {
+const CardTemplate = ({ number, scale, children }) => {
   const dotSize = (0.1 * scale) / 5; // 점의 크기를 스케일에 맞춰 조정
   const gapSize = (1 * scale) / 5; // 점 사이의 간격을 스케일에 맞춰 조정
+  const backgroundImage = `${process.env.PUBLIC_URL}/backgroundFront/front_${number % 5}.png`;
 
   const CardContainer = styled(Card)({
     position: "relative",
@@ -34,9 +35,8 @@ const CardTemplate = ({ scale, children }) => {
     justifyContent: "center",
     alignItems: "center",
     margin: `${0.45 * scale}px`,
-    background: "#383635",
-    // backgroundImage: `radial-gradient(circle, #606266 ${dotSize}px, transparent ${dotSize}px)`,
-    backgroundSize: "10px 10px",
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "cover",
     transition: "width 0.2s, height 0.2s",
     // animation: `${move} 5s linear infinite, ${bounce} 2s ease infinite`,
   });

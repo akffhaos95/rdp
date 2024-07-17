@@ -20,12 +20,16 @@ const Comment = ({ comments, scale }) => {
     flexDirection: "column", // 세로 정렬
     justifyContent: "center", // 세로 중앙 정렬
     alignItems: "center", // 가로 중앙 정렬
-    border: `${scale / 5}px solid #ddd`, // 테두리 설정
+    // border: `${scale / 5}px solid #ddd`, // 테두리 설정
     borderRadius: "3px", // 모서리 둥글게
     fontFamily: "Arial, sans-serif", // 기본 폰트
     fontSize: `${scale / 3}%`, // 기본 폰트 크기
     textAlign: "center", // 기본 정렬
     whiteSpace: "nowrap",
+
+    // 아래는 기존 디자인
+    background: "linear-gradient(145deg, #1c2a48, #283759)",
+    boxShadow: "15px 15px 30px #1c2a48, -15px -15px 30px #3a4a6a",
   });
 
   return (

@@ -7,7 +7,7 @@ import StatContainer from "./StatContainer";
 
 const CardFront = ({ card, scale }) => {
   return (
-    <CardTemplate scale={scale}>
+    <CardTemplate number={card.number} scale={scale}>
       <Number number={card.number} scale={scale} />
       <Name name={card.name} scale={scale} />
       <StatContainer scale={scale} />

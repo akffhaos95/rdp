@@ -7,7 +7,7 @@ const CardBack = ({ card, scale }) => {
 
   return (
     <div id="back">
-      <CardTemplate scale={scale}>
+      <CardTemplate number={card.number} scale={scale}>
         <Comment comments={card.comments} scale={scale} />
       </CardTemplate>
     </div>
