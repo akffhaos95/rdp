@@ -1,5 +1,6 @@
 import CardTemplate from "./CardTemplate";
 import Comment from "./Comment";
+import StatContainer from "./StatContainer";
 
 const CardBack = ({ card, scale }) => {
   console.log("back");
@@ -9,6 +10,7 @@ const CardBack = ({ card, scale }) => {
     <div id="back">
       <CardTemplate number={card.number} scale={scale}>
         <Comment comments={card.comments} scale={scale} />
+        <StatContainer scale={scale} />
       </CardTemplate>
     </div>
   );

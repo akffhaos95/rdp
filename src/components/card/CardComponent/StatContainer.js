@@ -4,14 +4,14 @@ import { styled } from "@mui/system";
 
 const Container = styled("div")(({ scale }) => ({
   position: "absolute",
-  top: `30%`, // 카드의 위쪽에서 약간 떨어진 위치
-  right: `3%`, // 카드의 왼쪽에서 약간 떨어진 위치
-  width: `${scale * 3}px`,
+  top: `3%`, // 카드의 위쪽에서 약간 떨어진 위치
+  left: `5%`, // 카드의 왼쪽에서 약간 떨어진 위치
+  width: `${scale * 6}px`,
   height: "auto",
   border: `${scale / 20}px solid #333`,
   borderRadius: `${10}px`,
   padding: `${scale / 20}px`,
-  background: "#2b2628",
+  // background: "#2b2628",
   boxShadow: `0 0 ${scale}px #000`,
   fontFamily: "galmuri",
   zIndex: 2,
