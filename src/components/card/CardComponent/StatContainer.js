@@ -3,18 +3,19 @@ import Stat from "./Stat";
 import { styled } from "@mui/system";
 
 const Container = styled("div")(({ scale }) => ({
-  position: "absolute",
-  top: `3%`, // 카드의 위쪽에서 약간 떨어진 위치
-  left: `5%`, // 카드의 왼쪽에서 약간 떨어진 위치
-  width: `${scale * 6}px`,
+  position: "relative",
+  width: `86%`,
   height: "auto",
-  border: `${scale / 20}px solid #333`,
-  borderRadius: `${10}px`,
-  padding: `${scale / 20}px`,
-  // background: "#2b2628",
-  boxShadow: `0 0 ${scale}px #000`,
-  fontFamily: "galmuri",
-  zIndex: 2,
+  marginLeft: "4%",
+  marginRight: "4%",
+  padding: "2%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "left",
+
+  border: `${scale / 10}px solid #ddd`,
+  borderRadius: "5%",
 }));
 
 const colors = {
@@ -32,7 +33,7 @@ const StatContainer = ({ scale }) => {
     { label: "타석", width: 40 },
     { label: "타율", width: 20 },
     { label: "방어율", width: 50 },
-    { label: "피안타율", width: 90 },
+    { label: "피안타율", width: 1000 },
     { label: "장타", width: 10 },
     { label: "수비", width: 120 },
     { label: "특수문자", width: 100 },

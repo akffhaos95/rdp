@@ -7,25 +7,26 @@ const Position = ({ positionsArray, scale }) => {
   const fieldImage = `${process.env.PUBLIC_URL}/field.png`;
 
   const PositionContainer = styled("div")({
-    position: "absolute",
-    top: "15%",
-    right: `3%`,
-    width: `${3 * scale}px`,
-    height: `${2.5 * scale}px`,
+    position: "relative",
+    width: `36%`,
+    height: `100%`,
     display: "flex",
     backgroundImage: `url(${fieldImage})`,
     backgroundSize: "cover",
+    display: "flex",
+    border: `${scale / 10}px solid #ddd`,
+    borderRadius: "5%",
   });
 
   const positions = {
-    p: { top: 65, left: 46.5 },
-    c: { top: 87, left: 46.5 },
+    p: { top: 65, left: 47.5 },
+    c: { top: 87, left: 47.5 },
     "1b": { top: 65, left: 65 },
     "2b": { top: 50, left: 58.5 },
     "3b": { top: 65, left: 29 },
     ss: { top: 50, left: 34 },
     lf: { top: 30, left: 20 },
-    cf: { top: 15, left: 46.5 },
+    cf: { top: 15, left: 47.5 },
     rf: { top: 30, left: 73 },
   };
   const Marker = styled("div")({

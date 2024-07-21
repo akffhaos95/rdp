@@ -23,8 +23,6 @@ const move = keyframes`
 `;
 
 const CardTemplate = ({ number, scale, children }) => {
-  const dotSize = (0.1 * scale) / 5; // 점의 크기를 스케일에 맞춰 조정
-  const gapSize = (1 * scale) / 5; // 점 사이의 간격을 스케일에 맞춰 조정
   const backgroundImage = `${process.env.PUBLIC_URL}/backgroundFront/front_${number % 5}.png`;
 
   const CardContainer = styled(Card)({
