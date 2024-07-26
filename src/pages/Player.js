@@ -9,6 +9,7 @@ import PlayerDetail from "../components/player/PlayerDetail";
 import { db } from "../firebase";
 import { card_component } from "../style/component.style";
 import PlayerCreate from "../components/player/PlayerCreate";
+import {MVP,GoldenGloves} from "../components/achievement/badges"
 /** @jsxImportSource @emotion/react */
 function Player() {
   const [players, setPlayers] = useState([]);
@@ -49,6 +50,8 @@ function Player() {
       <Typography variant="h5" gutterBottom mt={4}>
         등록된 선수 목록
       </Typography>
+      <GoldenGloves/>
+      <MVP year={2023}/>
       <Grid container style={{ background: "#f5f5f5" }}>
         {players.map((player) => (
           <Grid item xs={4} sm={2} md={2} key={player.id}>
