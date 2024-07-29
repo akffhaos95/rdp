@@ -10,11 +10,14 @@ import * as Detail from "./PlayerDetail.style";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import PlayerToggle from "./PlayerToggle";
 import { GoldenGloves, MVP } from "../achievement/badges";
+
 interface Player {
   name: string;
   number: string;
   photoURL: string;
   stats: { label: string; value: string }[];
+  batter:string;
+  pitcher:string;
 }
 
 // PlayerDetail 컴포넌트
@@ -50,7 +53,6 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
         >
           {isEdit ? <SaveIcon /> : <EditIcon />}
         </Button>
-
         {/* photo textfield */}
         <Grid container style={{ marginBottom: 10 ,border:"1px solid blue"}}>
           <Grid md={3.5} xs={4.5} sm={4.5}>
@@ -104,6 +106,8 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
             }}
           > 
             <PlayerToggle
+             name="pitcher"
+             control={control}
               options={[
                 { value: "좌투", name: "좌투" },
                 { value: "우투", name: "우투" },
@@ -113,6 +117,8 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
               handleValue={handlePitcher}
             />
             <PlayerToggle
+             control={control}
+             name="batter"
               options={[
                 { value: "좌타", name: "좌타" },
                 { value: "우타", name: "우타" },
@@ -140,12 +146,14 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
                 label="선수명"
                 variant="outlined"
                 value={player.name}
+                {...register("name")}
                 style={{ margin: "15px 10px " }}
               />
               <TextField
                 id="outlined-basic"
                 label="선수 번호"
                 variant="outlined"
+                {...register("number")}
                 value={player.number}
                 style={{ margin: "15px 10px " }}
               />
