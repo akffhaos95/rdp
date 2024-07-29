@@ -1,20 +1,14 @@
+import "../../style/font.css";
+
 import { Card, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import {
-  collection,
-  doc,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
 import { db, storage } from "../../firebase";
 import { getDownloadURL, list, ref } from "firebase/storage";
-import "../../style/font.css";
-import SportsBaseballIcon from "@mui/icons-material/SportsBaseball";
-import {card_component} from "../../style/component.style";
-/** @jsxImportSource @emotion/react */
 
+import SportsBaseballIcon from "@mui/icons-material/SportsBaseball";
+import { card_component } from "../../style/component.style";
+
+/** @jsxImportSource @emotion/react */
 
 type Player = {
   id: string;
@@ -40,10 +34,7 @@ const PlayerCard = ({ player, onClick }: PlayerCardProps) => {
   }, [player.id]);
 
   return (
-    <Card
-      css={card_component.card}
-      onClick={() => onClick(player)}
-    >
+    <Card css={card_component.card} onClick={() => onClick(player)}>
       {imageURL ? (
         <img
           src={imageURL}
@@ -53,11 +44,7 @@ const PlayerCard = ({ player, onClick }: PlayerCardProps) => {
       ) : (
         <SportsBaseballIcon style={{ fontSize: 240 }} />
       )}
-      <Typography
-        variant="h5"
-        component="div"
-        css={card_component.card_name}
-      >
+      <Typography variant="h5" component="div" css={card_component.card_name}>
         {`${player.name} (#${player.number})`}
       </Typography>
     </Card>
