@@ -20,6 +20,7 @@ const PlayerToggle = ({
   return (
     <Controller
       name={name}
+      defaultValue={value??""}
       control={control}
       render={({ field }) => (
         <ToggleButtonGroup

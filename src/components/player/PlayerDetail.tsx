@@ -9,17 +9,18 @@ import { Button, Grid, useMediaQuery, TextField } from "@mui/material";
 import * as Detail from "./PlayerDetail.style";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import PlayerToggle from "./PlayerToggle";
-import { GoldenGloves, MVP } from "../achievement/badges";
+import { GoldenGloves, MVP, Pitcher, Batter } from "../achievement/badges";
 
 interface Player {
   name: string;
   number: string;
   photoURL: string;
   stats: { label: string; value: string }[];
-  batter:string;
-  pitcher:string;
+  batter: string;
+  pitcher: string;
 }
-
+type BattingSide = "좌타" | "우타" | "양타";
+type PitchingSide = "좌투" | "우투" | "양투";
 // PlayerDetail 컴포넌트
 const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
   const stats = player?.stats ?? []; // stats가 undefined일 경우 빈 배열 사용
@@ -35,14 +36,6 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
 
   const [isEdit, setIsEdit] = useState(false);
 
-  const [batter, setBatter] = useState(() => "");
-  const [pitcher, setPitcher] = useState(() => "");
-  const handleBatter = (event: any) => {
-    setBatter(event.target.value);
-  };
-  const handlePitcher = (event: any) => {
-    setPitcher(event.target.value);
-  };
   return (
     <Detail.Card>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +47,7 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
           {isEdit ? <SaveIcon /> : <EditIcon />}
         </Button>
         {/* photo textfield */}
-        <Grid container style={{ marginBottom: 10 ,border:"1px solid blue"}}>
+        <Grid container style={{ marginBottom: 10, border: "1px solid blue" }}>
           <Grid md={3.5} xs={4.5} sm={4.5}>
             {player.photoURL ? (
               <Grid>
@@ -101,64 +94,77 @@ const PlayerDetail: React.FC<{ player: Player }> = ({ player }) => {
             pt={isMobile ? 4 : 3}
             style={{
               border: "1px solid orange",
-              display: isEdit ? "inline" : "none",
+              // display: isEdit ? "inline" : "none",
               marginLeft: "5%",
             }}
-          > 
-            <PlayerToggle
-             name="pitcher"
-             control={control}
-              options={[
-                { value: "좌투", name: "좌투" },
-                { value: "우투", name: "우투" },
-                { value: "양투", name: "양투" },
-              ]}
-              value={pitcher}
-              handleValue={handlePitcher}
-            />
-            <PlayerToggle
-             control={control}
-             name="batter"
-              options={[
-                { value: "좌타", name: "좌타" },
-                { value: "우타", name: "우타" },
-                { value: "양타", name: "양타" },
-              ]}
-              value={batter}
-              handleValue={handleBatter}
-            />
+          >
+            {isEdit ? (
+              <>
+                <PlayerToggle
+                  name="pitcher"
+                  control={control}
+                  options={[
+                    { value: "좌투", name: "좌투" },
+                    { value: "우투", name: "우투" },
+                    { value: "양투", name: "양투" },
+                  ]}
+                  value={player.pitcher}
+                />
 
-            <Button className="img_btn">
-              사진 업로드
-              <input type="file" />
-            </Button>
+                <PlayerToggle
+                  control={control}
+                  name="batter"
+                  options={[
+                    { value: "좌타", name: "좌타" },
+                    { value: "우타", name: "우타" },
+                    { value: "양타", name: "양타" },
+                  ]}
+                  value={player.batter}
+                />
+
+                <Button className="img_btn">
+                  사진 업로드
+                  <input type="file" />
+                </Button>
+              </>
+            ) : (
+              <div style={{ display: "block" }}>
+                <Batter battingSide={player.batter as BattingSide} />
+                <Pitcher pitchingSide={player.pitcher as PitchingSide} />
+              </div>
+            )}
           </Grid>
-         
         </Grid>
         {/* photo textfield */}
         {/* toggle & name number */}
-        <Grid container  style={{border:"1px solid red"}}>
+        <Grid container style={{ border: "1px solid red" }}>
           <Grid container>
-         
-           {isEdit? <Grid md={4} xs={6} sm={5}>
-              <TextField
-                id="outlined-basic"
-                label="선수명"
-                variant="outlined"
-                value={player.name}
-                {...register("name")}
-                style={{ margin: "15px 10px " }}
-              />
-              <TextField
-                id="outlined-basic"
-                label="선수 번호"
-                variant="outlined"
-                {...register("number")}
-                value={player.number}
-                style={{ margin: "15px 10px " }}
-              />
-            </Grid>:  <div style={{display:"flex"}}> <GoldenGloves/>
-          <MVP year={2023}/></div>}
+            {isEdit ? (
+              <Grid md={4} xs={6} sm={5}>
+                <TextField
+                  id="outlined-basic"
+                  label="선수명"
+                  variant="outlined"
+                  value={player.name}
+                  {...register("name")}
+                  style={{ margin: "15px 10px " }}
+                />
+                <TextField
+                  id="outlined-basic"
+                  label="선수 번호"
+                  variant="outlined"
+                  {...register("number")}
+                  value={player.number}
+                  style={{ margin: "15px 10px " }}
+                />
+              </Grid>
+            ) : (
+              <div style={{ display: "flex" }}>
+                {" "}
+                <GoldenGloves />
+                <MVP year={2023} />
+              </div>
+            )}
             <Grid style={{ marginLeft: "auto" }}>
               <Detail.InfoContainer>
                 <Detail.Number>{player.number}</Detail.Number>

@@ -41,12 +41,11 @@ const PlayerCreate = ({ handleClose }: { handleClose: () => void }) => {
           // 데이터의 id 이름으로 파일 이름 변경 후 파이어 스토어에 저장된 사진의 주소를 photoUrl로 업로드
           await updateDoc(doc(db, "players", docRef.id), { photoURL });
         }
-        handleClose()
+        handleClose();
       }
     } catch (error) {
       console.error("Error adding player: ", error);
     }
-
   };
 
   // const handlePhotoClick = () => {
@@ -73,7 +72,6 @@ const PlayerCreate = ({ handleClose }: { handleClose: () => void }) => {
     }
   };
 
-
   const handleButtonClick = () => {
     fileInputRef.current?.click();
   };
@@ -96,42 +94,44 @@ const PlayerCreate = ({ handleClose }: { handleClose: () => void }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid mt={5}>
           <Grid item>
-           {photo===null?
-            <Card
-              style={{
-                width: 150,
-                height: 200,
-                color: "lightgray",
-                alignItems: "center",
-                textAlign: "center",
-                cursor: "pointer",
-              }}
-              
-            >
-              <FaceIcon style={{ fontSize: 150 }} />
-              사진을 추가하세요
-            </Card>
-            :
-            <img src={URL.createObjectURL(photo)} alt="Uploaded preview" style={{
-                width: 150,
-                height: 200,
-                color: "lightgray",
-                alignItems: "center",
-                textAlign: "center",
-                cursor: "pointer",
-                border:10
-              }} />}
-               <Button onClick={handleButtonClick}>
-                  {photo!==null? "사진 수정" :"사진 선택"}
-               </Button>
+            {photo === null ? (
+              <Card
+                style={{
+                  width: 150,
+                  height: 200,
+                  color: "lightgray",
+                  alignItems: "center",
+                  textAlign: "center",
+                  cursor: "pointer",
+                }}
+              >
+                <FaceIcon style={{ fontSize: 150 }} />
+                사진을 추가하세요
+              </Card>
+            ) : (
+              <img
+                src={URL.createObjectURL(photo)}
+                alt="Uploaded preview"
+                style={{
+                  width: 150,
+                  height: 200,
+                  color: "lightgray",
+                  alignItems: "center",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  border: 10,
+                }}
+              />
+            )}
+            <Button onClick={handleButtonClick}>
+              {photo !== null ? "사진 수정" : "사진 선택"}
+            </Button>
             <input
               type="file"
               ref={fileInputRef}
               style={{ display: "none" }}
               onChange={handlePhotoUpload}
             />
-          
-      
           </Grid>
           <Grid>
             <TextField
