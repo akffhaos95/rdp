@@ -6,7 +6,7 @@ const Title = ({ title, scale }) => {
 
   const TitleBox = styled("div")({
     position: "relative",
-    width: `86%`,
+    width: `90%`,
     height: `5%`,
     marginLeft: "4%",
     marginRight: "4%",
@@ -16,10 +16,10 @@ const Title = ({ title, scale }) => {
     justifyContent: "center",
     alignItems: "center",
 
-    border: `${scale / 10}px solid #ddd`,
-    borderRadius: "5%",
+    borderBottom: `${scale / 10}px solid #DDD`,
     fontFamily: "Arial, sans-serif", // 기본 폰트
-    fontSize: `${scale}px`, // 기본 폰트 크기
+    color: "white",
+    fontSize: `${scale / 1.5}px`, // 기본 폰트 크기
     textAlign: "center", // 기본 정렬
   });
 

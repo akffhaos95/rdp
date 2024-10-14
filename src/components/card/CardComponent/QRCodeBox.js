@@ -13,7 +13,7 @@ const QRCodeBox = ({ url, scale }) => {
     marginRight: "2%",
     display: "flex",
     alignItems: "center",
-    border: `${scale / 10}px solid #ddd`,
+    // border: `${scale / 10}px solid #ddd`,
     borderRadius: "5%",
   });
 
@@ -23,7 +23,7 @@ const QRCodeBox = ({ url, scale }) => {
         value={url}
         size={scale * 2.7}
         bgColor={"#00ff0000"}
-        fgColor={"#00ff00"}
+        fgColor={"#9198e5"}
       />
     </QRContainer>
   );

@@ -59,7 +59,6 @@ const Stat = ({ label, width, scale, colors }) => {
     ? `${((normalizedWidth - MIN_VALUE) / (MAX_VALUE - MIN_VALUE)) * MAX_WIDTH}%`
     : "0%";
 
-  console.log(filledWidth);
   useEffect(() => {
     const timer = setTimeout(() => setFilled(true), delay);
     return () => clearTimeout(timer);

@@ -8,8 +8,6 @@ import { db } from "../firebase";
 const Card = () => {
   const [cardList, setCardList] = useState(null);
   const [card, setCard] = useState(null);
-  const [isEdit, setIsEdit] = useState(false);
-
   const [scale, setScale] = useState(20); // 초기값 10%
   const handleScaleChange = (event, newValue) => {
     setScale(newValue);
@@ -42,17 +40,10 @@ const Card = () => {
           <CardListBox
             cardList={cardList}
             setCard={setCard}
-            isEdit={isEdit}
-            setIsEdit={setIsEdit}
             scale={scale}
             handleScaleChange={handleScaleChange}
           />
-          <CardBox
-            card={card}
-            setCard={setCard}
-            isEdit={isEdit}
-            scale={scale}
-          />
+          <CardBox card={card} setCard={setCard} scale={scale} />
         </>
       )}
     </div>

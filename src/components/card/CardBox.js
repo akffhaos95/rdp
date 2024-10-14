@@ -7,7 +7,7 @@ import { styled } from "@mui/system";
 const Container = styled("div")({
   display: "flex",
   justifyContent: "center",
-  alignItems: "center",
+  // alignItems: "center",
   height: "100%",
   margin: "30px",
   padding: "30px 0px 150px 30px",
@@ -20,17 +20,10 @@ const CardBox = ({ card, setCard, isEdit, scale }) => {
 
   return (
     <Container>
-      {isEdit ? (
-        <>
-          <CardFront card={card} scale={scale} />
-          <CardBack card={card} scale={scale} />
-        </>
-      ) : (
-        <>
-          <CardBack card={card} scale={scale} />
-          <CommentEditor card={card} setCard={setCard} scale={scale} />
-        </>
-      )}
+      <>
+        <CardFront card={card} scale={scale} />
+        <CardBack card={card} scale={scale} />
+      </>
     </Container>
   );
 };

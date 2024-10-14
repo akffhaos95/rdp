@@ -2,8 +2,8 @@ import { FormControlLabel, Slider, Switch } from "@mui/material";
 
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import theme from "../../style/Theme";
 import { styled } from "@mui/system";
+import theme from "../../style/Theme";
 
 const CardListDiv = styled("div")({
   justifyContent: "center",
@@ -27,20 +27,9 @@ const CardButton = styled(Button)({
   margin: "5px",
 });
 
-const CardListBox = ({
-  cardList,
-  setCard,
-  scale,
-  handleScaleChange,
-  isEdit,
-  setIsEdit,
-}) => {
+const CardListBox = ({ cardList, setCard, scale, handleScaleChange }) => {
   const changeCard = ({ card }) => {
     setCard(card);
-  };
-
-  const handleEditToggle = () => {
-    setIsEdit(!isEdit);
   };
 
   return (
@@ -61,12 +50,6 @@ const CardListBox = ({
             height: 100,
           }}
         >
-          <FormControlLabel
-            style={{ margin: "5px 20px" }}
-            control={<Switch checked={isEdit} onChange={handleEditToggle} />}
-            label="수정"
-          />
-
           <Slider
             value={scale}
             onChange={handleScaleChange}

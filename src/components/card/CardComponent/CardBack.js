@@ -38,15 +38,15 @@ const CardBack = ({ card, scale }) => {
   return (
     <div id="back">
       <CardContainer>
-        <Title title={"여기에 타이틀"} scale={scale} />
-        <DivContainer>
-          <QRCodeBox
+        <Title title={"가나다라마바사아자차카타파하"} scale={scale} />
+        {/* <DivContainer> */}
+        {/* <QRCodeBox
             url={"https://www.youtube.com/watch?v=r4Kq29FNE-0&t=897s"}
             scale={scale}
-          />
-          <Guage scale={scale} />
-          <Position positionsArray={["p", "c", "1b", "2b"]} scale={scale} />
-        </DivContainer>
+          /> */}
+        {/* <Guage scale={scale} /> */}
+        {/* <Position positionsArray={["p", "c", "1b", "2b"]} scale={scale} /> */}
+        {/* </DivContainer> */}
 
         <StatContainer scale={scale} />
         <Comment comments={card.comments} scale={scale} />

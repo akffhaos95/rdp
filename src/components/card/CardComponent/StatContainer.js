@@ -14,8 +14,11 @@ const Container = styled("div")(({ scale }) => ({
   justifyContent: "center",
   alignItems: "left",
 
-  border: `${scale / 10}px solid #ddd`,
+  backgroundColor: "rgba(255, 255, 255, 0.2)",
+
+  border: `${scale / 10}px solid #FFFFFF`,
   borderRadius: "5%",
+  // boxShadow: `0 0 ${scale / 5}px #00FF00, 0 0 ${scale / 3}px #00FF00, 0 0 ${scale / 2}px #00FF00`,
 }));
 
 const colors = {

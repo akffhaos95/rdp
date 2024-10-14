@@ -14,7 +14,7 @@ const Position = ({ positionsArray, scale }) => {
     backgroundImage: `url(${fieldImage})`,
     backgroundSize: "cover",
     display: "flex",
-    border: `${scale / 10}px solid #ddd`,
+    // border: `${scale / 10}px solid #ddd`,
     borderRadius: "5%",
   });
 

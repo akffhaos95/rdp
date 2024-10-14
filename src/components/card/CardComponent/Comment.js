@@ -21,6 +21,8 @@ const Comment = ({ comments, scale }) => {
 
     border: `${scale / 10}px solid #ddd`,
     borderRadius: "5%",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+
     fontFamily: "Arial, sans-serif", // 기본 폰트
     fontSize: `${scale / 3}%`, // 기본 폰트 크기
     textAlign: "center", // 기본 정렬

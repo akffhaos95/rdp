@@ -13,7 +13,7 @@ const Guage = ({ guage, scale }) => {
     backgroundSize: "cover",
     display: "flex",
     marginRight: "2%",
-    border: `${scale / 10}px solid #ddd`,
+    // border: `${scale / 10}px solid #ddd`,
     borderRadius: "5%",
   });
 
