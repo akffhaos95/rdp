@@ -35,6 +35,10 @@ const Edit = () => {
     };
 
     const flattenObjectToString = (obj) => {
+      if (!obj || typeof obj !== "object") {
+        return ""; //type narrowing
+      }
+
       return Object.entries(obj)
         .map(([key, value]) => {
           if (typeof value === "object" && value !== null) {
@@ -52,7 +56,7 @@ const Edit = () => {
 
   return (
     <div style={{ display: "flex" }}>
-      <Sidebar card={card} setCard={setCard} /> {/* 사이드바 추가 */}
+      <Sidebar card={card} setCard={setCard} /> 사이드바 추가
       <div style={{ flex: 1 }}>
         {cardList && (
           <>
