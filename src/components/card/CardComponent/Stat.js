@@ -22,16 +22,7 @@ const StatBox = styled("div")(
     marginBottom: `0.5%`,
     transition: "width 1s ease-in-out",
     boxShadow: `0 0 ${scale / 12}px ${startColor}, 0 0 ${scale / 12}px ${startColor}, 0 0 ${scale / 12}px ${endColor}`,
-    opacity: 0,
-    transform: "translateX(-100%)",
-    animation: `slide-in 1s forwards ease-in-out ${delay}ms`,
-    "@keyframes slide-in": {
-      to: {
-        opacity: 1,
-        transform: "translateX(0)",
-      },
-    },
-    transformOrigin: "left",
+    opacity: 1,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -46,7 +37,6 @@ const Label = styled("span")(({ scale }) => ({
   position: "relative",
   width: "20%",
   fontFamily: "Giants-Inline",
-  // marginBottom: `${scale / 10}px`, // 속성 이름과 게이지바 사이의 여백 조정
   color: "#fff",
   fontSize: `${scale / 2.8}px`,
 }));

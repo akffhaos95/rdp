@@ -10,7 +10,7 @@ const Comment = ({ comments, scale }) => {
   const CommentBox = styled("div")({
     position: "relative",
     width: `86%`,
-    height: `30%`,
+    height: `100%`,
     marginLeft: "4%",
     marginRight: "4%",
     padding: "2%",

@@ -5,6 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@mui/icons-material": "^5.16.1",
     "@mui/material": "^5.15.21",
     "@mui/x-charts": "^7.11.0",
@@ -21,6 +24,8 @@
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
     "firebase": "^10.12.2",
+    "material-ui-color": "^1.2.0",
+    "material-ui-color-picker": "^3.5.1",
     "qrcode.react": "^3.1.0",
     "react": "^18.3.1",
     "react-color": "^2.19.3",

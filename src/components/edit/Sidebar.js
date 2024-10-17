@@ -1,17 +1,12 @@
-import React, { useState } from "react";
+import { Button, Typography } from "@mui/material";
+
+import Comment from "./Comment";
+import React from "react";
 
 const Sidebar = ({ card, setCard }) => {
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setCard((prevCard) => ({
-      ...prevCard,
-      [name]: value,
-    }));
-  };
-
   const handleCommentChange = (index, event) => {
     const { name, value } = event.target;
-    const updatedComments = card.comments || {};
+    const updatedComments = [...(card.comments || [])];
 
     updatedComments[index] = {
       ...updatedComments[index],
@@ -25,33 +20,26 @@ const Sidebar = ({ card, setCard }) => {
   };
 
   const handleCommentDelete = (index) => {
-    const updatedComments = { ...card.comments };
-    delete updatedComments[index];
-
-    // 인덱스 정리
-    const reorderedComments = {};
-    Object.keys(updatedComments).forEach((key, i) => {
-      reorderedComments[i] = updatedComments[key];
-    });
+    const updatedComments = [...(card.comments || [])];
+    updatedComments.splice(index, 1); // 인덱스에 해당하는 코멘트 삭제
 
     setCard((prevCard) => ({
       ...prevCard,
-      comments: reorderedComments,
+      comments: updatedComments,
     }));
   };
 
   const handleCommentAdd = () => {
-    const newCommentIndex = Object.keys(card.comments || {}).length;
-    const updatedComments = {
-      ...card.comments,
-      [newCommentIndex]: {
+    const updatedComments = [
+      ...(card.comments || []),
+      {
         comment: "",
         fontSize: 10,
         fontFamily: "",
         color: "",
         textAlign: "",
       },
-    };
+    ];
 
     setCard((prevCard) => ({
       ...prevCard,
@@ -72,103 +60,24 @@ const Sidebar = ({ card, setCard }) => {
       {card ? (
         <div>
           <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={card.name || ""}
-              onChange={handleInputChange}
-              style={{ width: "100%", marginBottom: "10px" }}
-            />
-          </label>
-          <label>
-            Description:
-            <textarea
-              name="description"
-              value={card.description || ""}
-              onChange={handleInputChange}
-              style={{ width: "100%", marginBottom: "10px" }}
-            />
-          </label>
-          <label>
-            Font Size:
-            <input
-              type="number"
-              name="fontSize"
-              value={card.fontSize || ""}
-              onChange={handleInputChange}
-              style={{ width: "100%", marginBottom: "10px" }}
-            />
-          </label>
-          <label>
             Comments:
-            {Object.entries(card.comments || {}).map(([index, comment]) => (
-              <div key={index} style={{ marginBottom: "10px" }}>
-                <h4>Comment {parseInt(index) + 1}</h4>
-                <button
-                  onClick={() => handleCommentDelete(index)}
-                  style={{ marginLeft: "10px", color: "red" }}
-                >
-                  X
-                </button>
-                <label>
-                  Text Align:
-                  <input
-                    type="text"
-                    name="textAlign"
-                    value={comment.textAlign || ""}
-                    onChange={(e) => handleCommentChange(index, e)}
-                    style={{ width: "100%", marginBottom: "5px" }}
-                  />
-                </label>
-                <label>
-                  Font Family:
-                  <input
-                    type="text"
-                    name="fontFamily"
-                    value={comment.fontFamily || ""}
-                    onChange={(e) => handleCommentChange(index, e)}
-                    style={{ width: "100%", marginBottom: "5px" }}
-                  />
-                </label>
-                <label>
-                  Color:
-                  <input
-                    type="text"
-                    name="color"
-                    value={comment.color || ""}
-                    onChange={(e) => handleCommentChange(index, e)}
-                    style={{ width: "100%", marginBottom: "5px" }}
-                  />
-                </label>
-                <label>
-                  Font Size:
-                  <input
-                    type="number"
-                    name="fontSize"
-                    value={comment.fontSize || ""}
-                    onChange={(e) => handleCommentChange(index, e)}
-                    style={{ width: "100%", marginBottom: "5px" }}
-                  />
-                </label>
-                <label>
-                  Comment:
-                  <textarea
-                    name="comment"
-                    value={comment.comment || ""}
-                    onChange={(e) => handleCommentChange(index, e)}
-                    style={{ width: "100%", marginBottom: "5px" }}
-                  />
-                </label>
-              </div>
-            ))}
+            {card.comments &&
+              card.comments.map((comment, index) => (
+                <Comment
+                  key={index}
+                  index={index}
+                  comment={comment}
+                  onCommentChange={(e) => handleCommentChange(index, e)}
+                  onCommentDelete={() => handleCommentDelete(index)}
+                />
+              ))}
           </label>
-          <button onClick={handleCommentAdd} style={{ marginTop: "10px" }}>
-            +
-          </button>
+          <Button onClick={handleCommentAdd} style={{ marginTop: "10px" }}>
+            Add Comment
+          </Button>
         </div>
       ) : (
-        <p>Select a card to edit.</p>
+        <Typography>Select a card to edit.</Typography>
       )}
     </div>
   );

@@ -8,17 +8,16 @@ const Container = styled("div")(({ scale }) => ({
   height: "auto",
   marginLeft: "4%",
   marginRight: "4%",
+  marginBottom: "4%",
   padding: "2%",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "left",
-
   backgroundColor: "rgba(255, 255, 255, 0.2)",
-
-  border: `${scale / 10}px solid #FFFFFF`,
-  borderRadius: "5%",
-  // boxShadow: `0 0 ${scale / 5}px #00FF00, 0 0 ${scale / 3}px #00FF00, 0 0 ${scale / 2}px #00FF00`,
+  borderRadius: "5%", // 둥근 테두리
+  border: `${scale / 10}px solid transparent`, // 투명한 기본 테두리
+  borderImage: `linear-gradient(45deg, #FF5733, #33BDFF) 1`, // 그라데이션으로 테두리 모양 적용
 }));
 
 const colors = {

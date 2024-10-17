@@ -10,6 +10,7 @@ const Title = ({ title, scale }) => {
     height: `5%`,
     marginLeft: "4%",
     marginRight: "4%",
+    marginBottom: "4%",
     padding: "2%",
     display: "flex",
     flexDirection: "column",

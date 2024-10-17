@@ -7,7 +7,7 @@ const Number = ({ number, scale }) => {
   const NumberBox = styled("div")({
     position: "absolute",
     top: `1%`, // 카드의 위쪽에서 약간 떨어진 위치
-    left: `7%`, // 카드의 왼쪽에서 약간 떨어진 위치
+    left: `4%`, // 카드의 왼쪽에서 약간 떨어진 위치
     color: "white",
     fontSize: `${scale * 2}px`, // 폰트 크기를 스케일에 맞게 조정
     fontFamily: "Chakra Petch",
@@ -31,7 +31,7 @@ const Number = ({ number, scale }) => {
   return (
     <NumberBox>
       {number}
-      <Dot
+      {/* <Dot
         style={{
           top: "5%",
           left: "-10%",
@@ -56,7 +56,7 @@ const Number = ({ number, scale }) => {
           bottom: "5%",
           right: "-15%",
         }}
-      />
+      /> */}
     </NumberBox>
   );
 };
