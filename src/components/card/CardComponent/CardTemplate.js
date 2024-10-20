@@ -21,6 +21,7 @@ const CardTemplate = ({ number, scale, children }) => {
     justifyContent: "center",
     alignItems: "center",
     margin: `${0.45 * scale}px`,
+    backgroundColor: "#000000",
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
   });

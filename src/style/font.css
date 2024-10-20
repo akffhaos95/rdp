@@ -31,19 +31,53 @@
 
 @font-face {
   font-family: "VITRO CORE";
-  src: url("../../public/fonts/VITRO_Font_OTF/VITRO_CORE_OTF.otf") format('opentype');
+  src: url("../../public/fonts/VITRO_Font_OTF/VITRO_CORE_OTF.otf")
+    format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "VITRO INSPIRE";
-  src: url("../../public/fonts/VITRO_Font_OTF/VITRO_INSPIRE_OTF.otf") format('opentype');
+  src: url("../../public/fonts/VITRO_Font_OTF/VITRO_INSPIRE_OTF.otf")
+    format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "VITRO PRIDE";
-  src: url("../../public/fonts/VITRO_Font_OTF/VITRO_PRIDE_OTF.otf") format('opentype');
+  src: url("../../public/fonts/VITRO_Font_OTF/VITRO_PRIDE_OTF.otf")
+    format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CookieRun Black";
+  src: url("../../public/fonts/CookieRunFont_OTF/CookieRun\ Black.otf")
+    format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CookieRun Regular";
+  src: url("../../public/fonts/CookieRunFont_OTF/CookieRun\ Regular.otf")
+    format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CookieRun Bold";
+  src: url("../../public/fonts/CookieRunFont_OTF/CookieRun\ Bold.otf")
+    format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Hakgyo";
+  src: url("../../public/fonts/HakgyoansimSamulhamOTFR.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }

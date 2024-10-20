@@ -1,71 +1,37 @@
 import React, { useEffect, useState } from "react";
 
+import Capsule from "./Capsule";
 import { styled } from "@mui/system";
-
-const MAX_WIDTH = 80; // 최대 길이 설정
-const MIN_VALUE = 0; // 최소 값
-const MAX_VALUE = 100; // 최대 값
 
 const StatContainer = styled("div")({
   display: "flex",
   alignItems: "center",
-  margin: "1%",
+  padding: "1%",
 });
-
-const StatBox = styled("div")(
-  ({ startColor, endColor, delay, filledWidth, scale }) => ({
-    position: "relative",
-    width: filledWidth,
-    background: `linear-gradient(10deg, ${endColor}, ${startColor})`,
-    borderRadius: `10px`,
-    marginTop: `0.5%`,
-    marginBottom: `0.5%`,
-    transition: "width 1s ease-in-out",
-    boxShadow: `0 0 ${scale / 12}px ${startColor}, 0 0 ${scale / 12}px ${startColor}, 0 0 ${scale / 12}px ${endColor}`,
-    opacity: 1,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#fff",
-    fontSize: `${scale / 3}px`,
-    fontWeight: "bold",
-    position: "relative",
-  }),
-);
 
 const Label = styled("span")(({ scale }) => ({
   position: "relative",
   width: "20%",
-  fontFamily: "Giants-Inline",
+  fontFamily: "CookieRun Regular",
   color: "#fff",
-  fontSize: `${scale / 2.8}px`,
+  fontSize: `${scale / 4}px`,
 }));
 
-const Stat = ({ label, width, scale, colors }) => {
-  const [filled, setFilled] = useState(false);
-  const delay = 500;
-  const normalizedWidth = Math.max(MIN_VALUE, Math.min(width, MAX_VALUE));
-  const filledWidth = filled
-    ? `${((normalizedWidth - MIN_VALUE) / (MAX_VALUE - MIN_VALUE)) * MAX_WIDTH}%`
-    : "0%";
+const ScoreLabel = styled("span")(({ scale }) => ({
+  position: "relative",
+  marginLeft: "1%",
+  width: "1%",
+  fontFamily: "CookieRun Regular",
+  color: "#fff",
+  fontSize: `${scale / 4}px`,
+}));
 
-  useEffect(() => {
-    const timer = setTimeout(() => setFilled(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
+const Stat = ({ label, width, scale, color }) => {
   return (
     <StatContainer>
       <Label scale={scale}>{label}</Label>
-      <StatBox
-        startColor={colors.start}
-        endColor={colors.end}
-        delay={delay}
-        filledWidth={filledWidth}
-        scale={scale}
-      >
-        {width}
-      </StatBox>
+      <Capsule score={width} scale={scale} color={color} />
+      <ScoreLabel scale={scale}>{width}</ScoreLabel>
     </StatContainer>
   );
 };

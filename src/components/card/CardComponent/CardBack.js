@@ -1,11 +1,9 @@
-import Card from "@mui/material/Card";
 import CardTemplate from "./CardTemplate";
+import { CircularProgress } from "@mui/material";
 import Comment from "./Comment";
-import Guage from "./Guage";
-import Position from "./Position";
-import QRCodeBox from "./QRCodeBox";
 import StatContainer from "./StatContainer";
 import Title from "./Title";
+import Variable from "./Variable";
 import { styled } from "@mui/system";
 
 const CardBack = ({ card, scale }) => {

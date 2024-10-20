@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "@mui/system";
+
 // import "../../../style/font.css"
 const Name = ({ name, scale }) => {
   if (name === null) return null;
@@ -8,9 +9,9 @@ const Name = ({ name, scale }) => {
     position: "absolute",
     top: `3%`,
     right: `3%`,
-    color: "white",
+    // color: "white",
     fontSize: `${scale}px`,
-    fontFamily: "VITRO CORE",
+    fontFamily: "Hakgyo",
     margin: `${0.1 * scale}px`,
     borderRadius: "5px",
     display: "flex",
