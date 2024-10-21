@@ -6,15 +6,15 @@ import { styled } from "@mui/system";
 const StatContainer = styled("div")({
   display: "flex",
   alignItems: "center",
-  padding: "1%",
 });
 
 const Label = styled("span")(({ scale }) => ({
   position: "relative",
-  width: "20%",
+  width: "22%",
   fontFamily: "CookieRun Regular",
   color: "#fff",
-  fontSize: `${scale / 4}px`,
+  margin: "0.3%",
+  fontSize: `${scale / 2.2}px`,
 }));
 
 const ScoreLabel = styled("span")(({ scale }) => ({
@@ -23,7 +23,7 @@ const ScoreLabel = styled("span")(({ scale }) => ({
   width: "1%",
   fontFamily: "CookieRun Regular",
   color: "#fff",
-  fontSize: `${scale / 4}px`,
+  fontSize: `${scale / 2.5}px`,
 }));
 
 const Stat = ({ label, width, scale, color }) => {

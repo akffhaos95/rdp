@@ -6,18 +6,14 @@ const Photo = ({ name, scale }) => {
 
   const Image = styled("img")({
     position: "absolute",
-    top: 30,
-    left: 30,
-    width: "80%",
-    height: "auto",
+    top: 0,
+    left: 0,
+    width: `${10.5 * scale}px`, // 1050px at scale 100
+    height: `${16.29 * scale}px`, // 1629px at scale 100
     zIndex: 1,
   });
 
-  return (
-    <>
-      <Image src={`${process.env.PUBLIC_URL}/${name}.png`} />
-    </>
-  );
+  return <Image src={`${process.env.PUBLIC_URL}/player/${name}.png`} />;
 };
 
 export default Photo;

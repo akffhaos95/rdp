@@ -8,13 +8,13 @@ const Capsule = ({ score, scale, color }) => {
 
   const capsules = [];
 
-  const width = `${scale / 5}px`;
-  const height = `${scale / 3}px`;
+  const width = `${scale / 4}px`;
+  const height = `${scale / 2}px`;
 
   for (let i = 0; i < fullCapsules; i++) {
     capsules.push(
       <img
-        src={`${color}.png`}
+        src={`capsule/${color}.png`}
         alt="Full Capsule"
         width={width}
         height={height}
@@ -24,13 +24,18 @@ const Capsule = ({ score, scale, color }) => {
 
   if (remainingPercentage > 0) {
     capsules.push(
-      <img src={`${color}_half.png`} width={width} height={height} />,
+      <img src={`capsule/${color}_half.png`} width={width} height={height} />,
     );
   }
 
   for (let i = 0; i < emptyCapsules; i++) {
     capsules.push(
-      <img src="8.png" alt="Empty Capsule" width={width} height={height} />,
+      <img
+        src="capsule/8.png"
+        alt="Empty Capsule"
+        width={width}
+        height={height}
+      />,
     );
   }
 

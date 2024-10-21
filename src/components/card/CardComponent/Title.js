@@ -6,12 +6,9 @@ const Title = ({ title, scale }) => {
 
   const TitleBox = styled("div")({
     position: "relative",
-    width: `90%`,
+    width: `100%`,
     height: `5%`,
-    marginLeft: "4%",
-    marginRight: "4%",
-    marginBottom: "4%",
-    padding: "2%",
+    marginBottom: "7%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

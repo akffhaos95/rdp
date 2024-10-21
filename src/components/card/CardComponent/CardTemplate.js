@@ -22,7 +22,7 @@ const CardTemplate = ({ number, scale, children }) => {
     alignItems: "center",
     margin: `${0.45 * scale}px`,
     backgroundColor: "#000000",
-    backgroundImage: `url(${backgroundImage})`,
+    // backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
   });
 

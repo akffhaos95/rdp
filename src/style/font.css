@@ -81,3 +81,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Rough";
+  src: url("../../public/fonts/roughsplash.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
