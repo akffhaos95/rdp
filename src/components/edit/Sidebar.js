@@ -67,8 +67,14 @@ const Sidebar = ({ card, setCard }) => {
                   key={index}
                   index={index}
                   comment={comment}
-                  onCommentChange={(e) => handleCommentChange(index, e)}
-                  onCommentDelete={() => handleCommentDelete(index)}
+                  onCommentChange={(e) => {
+                    handleCommentChange(index, e);
+                    console.log("handle change");
+                  }}
+                  onCommentDelete={() => {
+                    handleCommentDelete(index);
+                    console.log("ondelete");
+                  }}
                 />
               ))}
           </label>
