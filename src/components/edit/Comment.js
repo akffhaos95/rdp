@@ -18,13 +18,20 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Comment = ({ index, comment, onCommentChange, onCommentDelete }) => {
+const Comment = ({
+  index,
+  comment,
+  onCommentChange,
+  onCommentDelete,
+  isEdit,
+  handleEdit,
+}) => {
   const handleChange = (name, value) =>
     onCommentChange({ target: { name, value } });
   const handleFontChange = (event) => onCommentChange(event);
 
   return (
-    <Accordion>
+    <Accordion expanded={isEdit} onChange={handleEdit}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>{comment.comment || "Comment"}</Typography>
       </AccordionSummary>
@@ -90,7 +97,7 @@ const Comment = ({ index, comment, onCommentChange, onCommentDelete }) => {
                   {size}
                 </MenuItem>
               ))}
-            </Select>{" "}
+            </Select>
             <Button
               onClick={(e) => {
                 e.stopPropagation();
