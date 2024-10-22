@@ -1,8 +1,7 @@
 import { Button, Typography } from "@mui/material";
-
 import Comment from "./Comment";
-import React from "react";
-
+import { db } from "../../firebase";
+import { doc, updateDoc } from "firebase/firestore";
 const Sidebar = ({ card, setCard }) => {
   const handleCommentChange = (index, event) => {
     const { name, value } = event.target;
@@ -21,7 +20,7 @@ const Sidebar = ({ card, setCard }) => {
 
   const handleCommentDelete = (index) => {
     const updatedComments = [...(card.comments || [])];
-    updatedComments.splice(index, 1); // 인덱스에 해당하는 코멘트 삭제
+    updatedComments.splice(index, 1);
 
     setCard((prevCard) => ({
       ...prevCard,
@@ -46,6 +45,22 @@ const Sidebar = ({ card, setCard }) => {
       comments: updatedComments,
     }));
   };
+  const updateCard = async (updatedCard) => {
+    try {
+      const cardRef = doc(db, "card", updatedCard.id);
+
+      await updateDoc(cardRef, {
+        comments: updatedCard.comments,
+      });
+
+      console.log("코멘트 업데이트 성공");
+    } catch (error) {
+      console.error("코멘트 업데이트 실패:", error);
+    }
+  };
+  const handleCommentSave = () => {
+    updateCard(card);
+  };
 
   return (
     <div
@@ -69,17 +84,18 @@ const Sidebar = ({ card, setCard }) => {
                   comment={comment}
                   onCommentChange={(e) => {
                     handleCommentChange(index, e);
-                    console.log("handle change");
                   }}
                   onCommentDelete={() => {
                     handleCommentDelete(index);
-                    console.log("ondelete");
                   }}
                 />
               ))}
           </label>
           <Button onClick={handleCommentAdd} style={{ marginTop: "10px" }}>
             Add Comment
+          </Button>
+          <Button onClick={handleCommentSave} style={{ marginTop: "10px" }}>
+            save
           </Button>
         </div>
       ) : (
