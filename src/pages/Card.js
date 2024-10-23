@@ -31,21 +31,20 @@ const Card = () => {
           const data = new Uint8Array(arrayBuffer);
           const workbook = XLSX.read(data, { type: "array" });
 
-          const playersheet = workbook.Sheets["24년 시즌 (민석이 제공용)"];
-          const playersheetData = XLSX.utils.sheet_to_json(playersheet);
-          console.log(playersheetData);
-
           const playerWorkSheet = workbook.Sheets["선수"];
           const playerData = XLSX.utils.sheet_to_json(playerWorkSheet);
           setPlayerList(playerData);
+          console.log(playerData);
 
           const batterWorkSheet = workbook.Sheets["타자"];
           const batterData = XLSX.utils.sheet_to_json(batterWorkSheet);
           setBatterList(batterData);
+          console.log(batterData);
 
           const pitcherWorkSheet = workbook.Sheets["투수"];
           const pitcherData = XLSX.utils.sheet_to_json(pitcherWorkSheet);
           setPitcherList(pitcherData);
+          console.log(pitcherData);
 
           // 초반은 첫번째 player를 저장
           setPlayer(playerData[0]);
