@@ -1,10 +1,18 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, Tab } from "@mui/material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Comment from "./Comment";
 import { useState } from "react";
 import { db } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
+import React from "react";
 
 const Sidebar = ({ card, setCard }) => {
+  const [tab, setTab] = React.useState("1");
+
+  const handleChange = (event, newValue) => {
+    setTab(newValue);
+  };
+
   const [isEdit, setIsEdit] = useState(null);
 
   const handleEditComment = (index) => {
@@ -80,36 +88,50 @@ const Sidebar = ({ card, setCard }) => {
         padding: "20px",
         backgroundColor: "#f5f5f5",
         borderRight: "1px solid #ccc",
+        overflow: "hidden",
       }}
     >
-      <h3>Edit Card</h3>
-      {card ? (
-        <div>
-          <label>
-            Comments:
-            {card.comments &&
-              card.comments.map((comment, index) => (
-                <Comment
-                  key={index}
-                  index={index}
-                  comment={comment}
-                  onCommentChange={(e) => handleCommentChange(index, e)}
-                  onCommentDelete={() => handleCommentDelete(index)}
-                  isEdit={isEdit === index}
-                  handleEdit={() => handleEditComment(index)}
-                />
-              ))}
-          </label>
-          <Button onClick={handleCommentAdd} style={{ marginTop: "10px" }}>
-            Add Comment
-          </Button>
-          <Button onClick={handleCommentSave} style={{ marginTop: "10px" }}>
-            save
-          </Button>
+      <TabContext value={tab}>
+        <div style={{ borderBottom: 1, borderColor: "divider" }}>
+          <TabList onChange={handleChange} aria-label="sidebar tabs">
+            <Tab label="코멘트" value="1" />
+            <Tab label="타이틀" value="2" />
+            <Tab label="업적" value="3" />
+          </TabList>
         </div>
-      ) : (
-        <Typography>Select a card to edit.</Typography>
-      )}
+        <TabPanel value="1" style={{ height: "100%", overflow: "auto" }}>
+          {" "}
+          {card ? (
+            <div>
+              <label>
+                Comments:
+                {card.comments &&
+                  card.comments.map((comment, index) => (
+                    <Comment
+                      key={index}
+                      index={index}
+                      comment={comment}
+                      onCommentChange={(e) => handleCommentChange(index, e)}
+                      onCommentDelete={() => handleCommentDelete(index)}
+                      isEdit={isEdit === index}
+                      handleEdit={() => handleEditComment(index)}
+                    />
+                  ))}
+              </label>
+              <Button onClick={handleCommentAdd} style={{ marginTop: "10px" }}>
+                Add Comment
+              </Button>
+              <Button onClick={handleCommentSave} style={{ marginTop: "10px" }}>
+                Save
+              </Button>
+            </div>
+          ) : (
+            <Typography>Select a card to edit.</Typography>
+          )}
+        </TabPanel>
+        <TabPanel value="2">Item Two</TabPanel>
+        <TabPanel value="3">Item Three</TabPanel>
+      </TabContext>
     </div>
   );
 };
