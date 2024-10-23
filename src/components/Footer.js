@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
-
-import React from "react";
 import { styled } from "@mui/system";
+import theme from "../style/Theme";
 
 const FooterBox = styled(Box)({
   padding: "10px 0",
@@ -9,6 +8,9 @@ const FooterBox = styled(Box)({
   bottom: 0,
   width: "100%",
   zIndex: 50,
+  border: "1px solid grey",
+  background: theme.main,
+  color: "white",
 });
 const Footer = () => {
   return (

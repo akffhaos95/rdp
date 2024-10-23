@@ -35,7 +35,7 @@ const Edit = () => {
 
     const flattenObjectToString = (obj) => {
       if (!obj || typeof obj !== "object") {
-        return ""; //type narrowing
+        return ""; // type narrowing
       }
 
       return Object.entries(obj)
@@ -51,12 +51,25 @@ const Edit = () => {
     const flattenedString = flattenObjectToString(card);
     console.log(flattenedString);
     fetchFirestoreData();
-  }, []);
+  }, [card]);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div
+      style={{
+        display: "flex",
+        height: "100%",
+        flexGrow: 1,
+      }}
+    >
       <Sidebar card={card} setCard={setCard} />
-      <div style={{ flex: 1 }}>
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+        }}
+      >
         {cardList && (
           <>
             <CardListBox

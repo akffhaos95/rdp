@@ -76,6 +76,7 @@ const Sidebar = ({ card, setCard }) => {
     <div
       style={{
         width: "250px",
+        minHeight: "100vh",
         padding: "20px",
         backgroundColor: "#f5f5f5",
         borderRight: "1px solid #ccc",
