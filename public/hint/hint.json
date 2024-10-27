@@ -1,0 +1,25 @@
+{
+  "hint1": {
+    "type": "text",
+    "title": "힌트 1",
+    "password": null,
+    "data": "이것은 첫 번째 힌트입니다.",
+    "detail": "이것은 첫 번째 힌트입니다."
+  },
+  "hint2": {
+    "type": "image",
+    "title": "범신의 가호를 받는 사진",
+    "detail": "오직 범신님만이!!!!!오직 범신님만이!!!!!오직 범신님만이!!!!!오직 범신님만이!!!!!오직 범신님만이!!!!!오직 범신님만이!!!!!오직 범신님만이!!!!!",
+    "password": {
+      "title": "범신 탄신일 ****",
+      "answer": "0618"
+    },
+    "data": "hint2.jpg"
+  },
+  "hint3": {
+    "type": "audio",
+    "title": "권강현과의 통화 내용",
+    "password": null,
+    "data": "크라임신 녹음.wav"
+  }
+}
