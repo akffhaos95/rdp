@@ -51,7 +51,7 @@ const Edit = () => {
     const flattenedString = flattenObjectToString(card);
     console.log(flattenedString);
     fetchFirestoreData();
-  }, [card]);
+  }, []);
 
   return (
     <div
