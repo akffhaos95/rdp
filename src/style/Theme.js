@@ -9,5 +9,8 @@ const theme = {
   bg_20: "#e8e8e8",
   text_70: "#212121",
   white_80: "#fafafa",
+  blue: {
+    30: "#b0c8f5",
+  },
 };
 export default theme;

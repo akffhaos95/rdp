@@ -1,9 +1,36 @@
 import { useEffect, useState } from "react";
 import { Step, StepLabel, Stepper } from "@mui/material";
+import styled, { keyframes } from "styled-components";
+import theme from "../../style/Theme";
+const timerAnimation = keyframes`
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+`;
 
+const TimeText = styled.span`
+  display: inline-block;
+  animation: ${(props) =>
+      props.timer > props.redFlag ? "none" : timerAnimation}
+    0.2s infinite;
+  font-size: 400px;
+  color: ${(props) => (props.redFlag < props.timer ? "black" : "red")};
+`;
+
+const ControlBtn = styled.button`
+  width: 140px;
+  height: 65px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  margin: 10px;
+  font-size: 30px;
+  background: ${theme.blue[30]};
+`;
 const Timer = () => {
   const timetable = [
-    //타임테이블 안에 순서랑 시간 추가 또는 수정하면 (10 == 10초, 10분 = 600 ) 타이머 시간에 알아서 반영됨
     { label: "1차조사", duration: 20 },
     { label: "1차토론", duration: 10 },
     { label: "2차조사", duration: 20 },
@@ -12,6 +39,8 @@ const Timer = () => {
     { label: "최후의 조사", duration: 5 },
     { label: "범인 지목", duration: 20 },
   ];
+
+  const redFlag = 5;
   const [start, setStart] = useState(false);
   const [timer, setTimer] = useState(timetable[0].duration);
   const [activeStep, setActiveStep] = useState(0);
@@ -40,7 +69,7 @@ const Timer = () => {
   };
 
   return (
-    <div style={{ padding: 20, display: "block" }}>
+    <div style={{ padding: 40 }}>
       <Stepper activeStep={activeStep} sx={{ mb: 4 }}>
         {timetable.map((step, index) => (
           <Step
@@ -54,19 +83,25 @@ const Timer = () => {
           </Step>
         ))}
       </Stepper>
-      <span style={{ fontSize: 250 }}>
-        {Math.floor(timer / 60)
-          .toString()
-          .padStart(2, 0)}
-        :
-        {Math.floor(timer > 60 ? timer % 60 : timer)
-          .toString()
-          .padStart(2, 0)}
-      </span>
-      <button onClick={() => setStart(!start)}>
-        {start ? "pause" : "start"}
-      </button>
-      <button onClick={resetTimer}>reset</button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <TimeText timer={timer} redFlag={redFlag}>
+          {String(Math.floor(timer / 60)).padStart(2, "0")}:
+          {String(timer % 60).padStart(2, "0")}
+        </TimeText>
+        <div>
+          <ControlBtn onClick={() => setStart(!start)}>
+            {start ? "PAUSE" : "START"}
+          </ControlBtn>
+          <ControlBtn onClick={resetTimer}>RESET</ControlBtn>
+        </div>
+      </div>
     </div>
   );
 };
