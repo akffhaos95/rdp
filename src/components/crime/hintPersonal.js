@@ -18,6 +18,7 @@ const HintPersonal = () => {
   const file = `${process.env.PUBLIC_URL}/hint`;
 
   const fetchHintData = async () => {
+    localStorage.setItem("personal_name", personal_name);
     try {
       const response = await fetch(`${file}/personal.json`);
       if (!response.ok) throw new Error("Network response failed.");
@@ -34,7 +35,7 @@ const HintPersonal = () => {
 
   useEffect(() => {
     // Check localStorage for the name
-    const savedName = localStorage.getItem("personal_name");
+    const savedName = localStorage.getItem("memory_unlock");
     if (savedName === personal_name) {
       setShowAfter(true); // Skip password prompt if name is found
     }
@@ -44,7 +45,7 @@ const HintPersonal = () => {
     e.preventDefault();
     if (hintData && (!hintData.password || password === hintData.password)) {
       setShowAfter(true);
-      localStorage.setItem("personal_name", personal_name); // Save the name in localStorage
+      localStorage.setItem("memory_unlock", personal_name); // Save the name in localStorage
     } else {
       alert("Incorrect password.");
     }
