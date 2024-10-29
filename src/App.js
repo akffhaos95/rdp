@@ -16,12 +16,13 @@ import Footer from "./components/Footer";
 import Game from "./pages/Game";
 import Hint from "./components/crime/hint";
 import HintList from "./components/crime/hintList";
-import HintMain from "./components/crime/hintMain";
+import HintMain from "./components/crime/hintPersonal";
 import Player from "./pages/Player";
 import Record from "./pages/Record";
 import TemporaryDrawer from "./SideBar";
 import Timer from "./components/crime/timer";
 import theme from "./style/Theme";
+import { useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
 
 const font_theme = createTheme({
@@ -56,15 +57,23 @@ function MenuToolbar() {
 }
 
 function CrimeToolbar() {
+  const savedName = localStorage.getItem("personal_name");
+
   return (
     <AppBar position="static" style={{ zIndex: 50 }}>
       <Toolbar style={{ background: theme.main }}>
         <Typography variant="h5" style={{ fontFamily: "Rye" }}>
           Rascal 크라임씬
         </Typography>
-        {/* <Button color="inherit" component={Link} to="/crime">
-          힌트
-        </Button> */}
+        {savedName && (
+          <Button
+            color="inherit"
+            component={Link}
+            to={`/crime/personal/${savedName}`}
+          >
+            프로필
+          </Button>
+        )}
         <Button color="inherit" component={Link} to="/crime/hint-list">
           발견한 힌트
         </Button>
@@ -113,7 +122,10 @@ function AppContent() {
             <Route path="/card" element={<Card />} />
             <Route path="/edit" element={<Edit />} />
             <Route path="/crime/time" element={<Timer />} />
-            <Route path="/crime" element={<HintMain />} />
+            <Route
+              path="/crime/personal/:personal_name"
+              element={<HintMain />}
+            />
             <Route path="/crime/:hint_number" element={<Hint />} />
             <Route path="/crime/hint-list" element={<HintList />} />
           </Routes>
