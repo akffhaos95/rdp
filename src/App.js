@@ -4,7 +4,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import {
   Link,
   Route,
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   useLocation,
 } from "react-router-dom";
@@ -145,7 +145,7 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider theme={font_theme}>
-      <Router basename="/rdp">
+      <Router>
         <AppContent />
       </Router>
     </ThemeProvider>
