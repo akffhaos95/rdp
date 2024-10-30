@@ -49,12 +49,6 @@ function MenuToolbar() {
             <Button color="inherit" component={Link} to="/edit">
               카드 수정
             </Button>
-            <Button color="inherit" component={Link} to="/crime/hint-list">
-              발견한 힌트
-            </Button>
-            <Button color="inherit" component={Link} to="/crime/time">
-              타이머
-            </Button>
           </>
         )}
       </Toolbar>
@@ -90,7 +84,7 @@ function CrimeToolbar() {
 
 function AppContent() {
   const location = useLocation();
-
+  console.log(location);
   return (
     <div
       style={{
@@ -101,7 +95,7 @@ function AppContent() {
         overflow: "hidden",
       }}
     >
-      {location.pathname.endsWith("/crime") ? (
+      {location.pathname.startsWith("/#/crime") ? (
         <CrimeToolbar />
       ) : (
         <MenuToolbar />
