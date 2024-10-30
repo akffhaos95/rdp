@@ -1,39 +1,117 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Chip, List, ListItem, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
+const HintItem = styled("div")`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  padding: 2px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0;
+  gap: 10px;
+`;
+
+const HintChip = styled(Chip)`
+  margin-right: 8px;
+  font-size: 0.875rem;
+  color: white;
+  background-color: #3f51b5;
+`;
 
 const HintList = () => {
-  const [storedHints, setStoredHints] = useState([]);
+  const [discoveredHints, setDiscoveredHints] = useState([]);
+  const [hints, setHints] = useState([]);
+  const file = `${process.env.PUBLIC_URL}/hint`;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // 로컬 스토리지에서 힌트 번호 리스트 가져오기
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${file}/hint.json`);
+        if (!response.ok) throw new Error("Network response failed.");
+
+        const data = await response.json();
+        const hintsArray = Object.keys(data).map((key) => ({
+          id: key,
+          ...data[key],
+        }));
+        setHints(hintsArray);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
     const fetchStoredHints = () => {
-      const hints = JSON.parse(localStorage.getItem("hintList")) || [];
-      setStoredHints(hints);
+      const stored = JSON.parse(localStorage.getItem("hintList")) || [];
+      setDiscoveredHints(stored);
     };
 
     fetchStoredHints();
+    fetchData();
   }, []);
+
+  const convertToKST = (utcDateString) => {
+    const utcDate = new Date(utcDateString);
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZone: "Asia/Seoul",
+      hour12: false, // 24-hour format
+    };
+    return utcDate.toLocaleString("ko-KR", options);
+  };
+
+  const handleHintClick = (hintId) => {
+    navigate(`/crime/${hintId}`); // Change this path as per your routing
+  };
 
   return (
     <Box sx={{ padding: 2 }}>
-      <Typography variant="h4" sx={{ marginBottom: 2 }}>
-        저장된 힌트 목록
-      </Typography>
-      {storedHints.length === 0 ? (
-        <Typography>저장된 힌트가 없습니다.</Typography>
-      ) : (
-        storedHints.map((hint) => (
-          <Box key={hint} sx={{ marginBottom: 1 }}>
-            <Link to={`/crime/${hint}`}>
-              <Button variant="contained" color="primary">
-                {hint} {/* 힌트 번호를 버튼에 표시 */}
-              </Button>
-            </Link>
-          </Box>
-        ))
-      )}
+      <List sx={{ width: "100%" }}>
+        {hints.map((hint) => {
+          const discovered = discoveredHints.some(
+            (entry) => entry.id === hint.id,
+          );
+          const discoveryTime = discovered
+            ? discoveredHints.find((entry) => entry.id === hint.id)
+                ?.discoveryTime
+            : null;
+
+          return (
+            <ListItem
+              key={hint.id}
+              onClick={() => discovered && handleHintClick(hint.id)}
+              style={{ cursor: "pointer" }}
+            >
+              <HintItem style={{ opacity: discovered ? 1 : 0.5 }}>
+                {/* Hint ID as Chip */}
+                <HintChip label={hint.id} />
+
+                {/* Hint Title */}
+                <Typography variant="body1" sx={{ marginRight: "auto" }}>
+                  {discovered ? hint.title : "**************"}
+                </Typography>
+
+                {/* Discovery Time */}
+                <Typography variant="body2" sx={{ marginLeft: "16px" }}>
+                  {discoveryTime
+                    ? convertToKST(discoveryTime)
+                    : "****.**.**. **:**:**"}
+                </Typography>
+              </HintItem>
+            </ListItem>
+          );
+        })}
+      </List>
     </Box>
   );
 };
