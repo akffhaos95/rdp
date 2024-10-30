@@ -95,11 +95,11 @@ function AppContent() {
         overflow: "hidden",
       }}
     >
-      {location.pathname.startsWith("/crime") ? (
-        <CrimeToolbar />
-      ) : (
-        <MenuToolbar />
-      )}
+      {/* {location.pathname.startsWith("/crime") ? ( */}
+      <CrimeToolbar />
+      {/* ) : ( */}
+      <MenuToolbar />
+      {/* )} */}
       <main
         style={{
           flex: 1,
