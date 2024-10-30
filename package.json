@@ -43,6 +43,7 @@
   },
   "homepage": "https://akffhaos95.github.io/rdp",
   "scripts": {
+    "lint": "eslint . --max-warnings=0",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
