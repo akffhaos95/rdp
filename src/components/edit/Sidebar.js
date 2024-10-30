@@ -4,15 +4,8 @@ import Comment from "./Comment";
 import { useState } from "react";
 import { db } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
-import React from "react";
 
-const Sidebar = ({ card, setCard }) => {
-  const [tab, setTab] = React.useState("1");
-
-  const handleChange = (event, newValue) => {
-    setTab(newValue);
-  };
-
+const Sidebar = ({ card, setCard, tab, handleTab }) => {
   const [isEdit, setIsEdit] = useState(null);
 
   const handleEditComment = (index) => {
@@ -93,7 +86,10 @@ const Sidebar = ({ card, setCard }) => {
     >
       <TabContext value={tab}>
         <div style={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleChange} aria-label="sidebar tabs">
+          <TabList
+            onChange={(event, newValue) => handleTab(newValue)}
+            aria-label="sidebar tabs"
+          >
             <Tab label="코멘트" value="1" />
             <Tab label="타이틀" value="2" />
             <Tab label="업적" value="3" />
