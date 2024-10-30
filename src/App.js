@@ -84,7 +84,7 @@ function CrimeToolbar() {
 
 function AppContent() {
   const location = useLocation();
-  console.log(location);
+
   return (
     <div
       style={{
@@ -95,7 +95,7 @@ function AppContent() {
         overflow: "hidden",
       }}
     >
-      {location.pathname.startsWith("/#/crime") ? (
+      {location.pathname.startsWith("/crime") ? (
         <CrimeToolbar />
       ) : (
         <MenuToolbar />
