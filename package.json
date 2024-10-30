@@ -41,13 +41,17 @@
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
   },
+  "homepage": "https://akffhaos95.github.io/rdp",
   "scripts": {
+    "lint": "eslint . --max-warnings=0",
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "build": "react-scripts build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -69,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@chromatic-com/storybook": "^1.6.1",
     "@storybook/addon-essentials": "^8.1.11",
     "@storybook/addon-interactions": "^8.1.11",
@@ -81,6 +86,7 @@
     "@storybook/test": "^8.1.11",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "eslint-plugin-storybook": "^0.8.0",
+    "gh-pages": "^6.2.0",
     "prop-types": "^15.8.1",
     "storybook": "^8.1.11",
     "webpack": "^5.92.1"

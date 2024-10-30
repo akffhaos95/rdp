@@ -1,0 +1,26 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module",
+  },
+
+  "rules": {
+    "max-warnings": "off",
+    "react/prop-types": "warn", // prop-types 관련 경고
+    "react/react-in-jsx-scope": "warn", // React import 관련 경고
+    "no-undef": "warn", // 정의되지 않은 변수 경고
+    "no-unused-vars": "warn", // 사용되지 않는 변수 경고
+    "no-console": "warn", // console.log 사용 경고
+    "no-debugger": "warn", // debugger 사용 경고
+    "react/display-name": "warn", // 컴포넌트 displayName 누락 경고
+    "react/jsx-key": "warn", // JSX 반복문에서 key prop 누락 경고
+    "react/jsx-boolean-value": "warn", // 불필요한 boolean 값 경고
+    "react/no-unescaped-entities": "warn", // JSX에서 특수 문자 사용 경고
+    "react/jsx-no-comment-textnodes": "warn", // 주석이 있는 텍스트 노드 관련 경고
+  },
+}

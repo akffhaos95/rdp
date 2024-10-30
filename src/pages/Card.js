@@ -14,8 +14,7 @@ const Card = () => {
   const [scale, setScale] = useState(20); // 초기값 10%
 
   const [playerList, setPlayerList] = useState(null);
-  const [batterList, setBatterList] = useState(null);
-  const [pitcherList, setPitcherList] = useState(null);
+
   const [player, setPlayer] = useState(null);
 
   const handleScaleChange = (event, newValue) => {

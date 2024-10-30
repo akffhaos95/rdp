@@ -10,7 +10,11 @@ const Edit = () => {
   const [cardList, setCardList] = useState(null);
   const [card, setCard] = useState(null);
   const [scale, setScale] = useState(20);
+  const [tab, setTab] = React.useState("1");
 
+  const handleTab = (newValue) => {
+    setTab(newValue);
+  };
   const handleScaleChange = (event, newValue) => {
     setScale(newValue);
   };
@@ -61,7 +65,7 @@ const Edit = () => {
         flexGrow: 1,
       }}
     >
-      <Sidebar card={card} setCard={setCard} />
+      <Sidebar card={card} setCard={setCard} tab={tab} handleTab={handleTab} />
       <div
         style={{
           flex: 1,

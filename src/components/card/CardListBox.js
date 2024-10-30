@@ -21,7 +21,6 @@ const CardButton = styled(Button)({
   border: 0,
   borderRadius: 3,
   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.25)",
-  color: "white",
   height: 25,
   padding: "10px 15px",
   margin: "5px",
