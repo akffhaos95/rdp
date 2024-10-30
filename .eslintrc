@@ -10,6 +10,7 @@
   },
 
   "rules": {
+    "max-warnings": "off",
     "react/prop-types": "warn", // prop-types 관련 경고
     "react/react-in-jsx-scope": "warn", // React import 관련 경고
     "no-undef": "warn", // 정의되지 않은 변수 경고
