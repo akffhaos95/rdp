@@ -53,7 +53,7 @@ const Record = () => {
     const fetchPlayers = async () => {
       const querySnapshot = await getDocs(collection(db, "players"));
       setPlayers(
-        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
       );
     };
     fetchPlayers();
@@ -65,7 +65,7 @@ const Record = () => {
         const q = query(
           collection(db, "events"),
           orderBy("timestamp", "desc"),
-          limit(1)
+          limit(1),
         );
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
@@ -75,7 +75,7 @@ const Record = () => {
           setHalfInning(lastEvent.teamAtBat === "away" ? "초" : "말");
           setRunners(lastEvent.runners);
           const batterIndex = lineup.findIndex(
-            (player) => player.batter === lastEvent.batter
+            (player) => player.batter === lastEvent.batter,
           );
           setCurrentBatterIndex(batterIndex !== -1 ? batterIndex : 0);
         }
@@ -84,11 +84,11 @@ const Record = () => {
       const fetchRecords = async () => {
         const q = query(
           collection(db, "games", selectedGame, "records"),
-          orderBy("timestamp", "asc")
+          orderBy("timestamp", "asc"),
         );
         const querySnapshot = await getDocs(q);
         setRecords(
-          querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+          querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
         );
       };
 
@@ -139,7 +139,7 @@ const Record = () => {
       if (result === "안타") {
         if (runners.third)
           setScore((prev) =>
-            prev.map((s, i) => (i === currentInning - 1 ? s + 1 : s))
+            prev.map((s, i) => (i === currentInning - 1 ? s + 1 : s)),
           );
         newRunners = {
           first: lineup[currentBatterIndex].batter,
@@ -160,17 +160,17 @@ const Record = () => {
     // Fetch updated records
     const q = query(
       collection(db, "games", selectedGame, "records"),
-      orderBy("timestamp", "asc")
+      orderBy("timestamp", "asc"),
     );
     const querySnapshot = await getDocs(q);
     setRecords(
-      querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
     );
   };
 
-  const currentBatter = players.find(
-    (player) => player.id === lineup[currentBatterIndex]?.batter
-  );
+  // const currentBatter = players.find(
+  //   (player) => player.id === lineup[currentBatterIndex]?.batter
+  // );
 
   return (
     <Box>
