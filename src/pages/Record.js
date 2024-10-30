@@ -17,7 +17,6 @@ import React, { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
-  doc,
   getDocs,
   limit,
   orderBy,

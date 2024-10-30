@@ -1,5 +1,3 @@
-import { Card } from "@mui/material";
-import { Image } from "@mui/icons-material";
 import React from "react";
 import { styled } from "@mui/system";
 
@@ -13,7 +11,7 @@ const Position = ({ positionsArray, scale }) => {
     display: "flex",
     backgroundImage: `url(${fieldImage})`,
     backgroundSize: "cover",
-    display: "flex",
+
     // border: `${scale / 10}px solid #ddd`,
     borderRadius: "5%",
   });

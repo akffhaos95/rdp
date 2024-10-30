@@ -1,7 +1,8 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import CardBack from "./CardComponent/CardBack";
 import CardFront from "./CardComponent/CardFront";
-import CommentEditor from "./CardComponent/CommentEditor";
-import React from "react";
 import { styled } from "@mui/system";
 
 const Container = styled("div")({

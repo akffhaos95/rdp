@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/react-in-jsx-scope */
 import { Button, Typography, Tab } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Comment from "./Comment";
