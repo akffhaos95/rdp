@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/rdp/static/css/main.5a0bf1b4.css",
-    "main.js": "/rdp/static/js/main.7b97e97b.js",
+    "main.js": "/rdp/static/js/main.ba41b0ab.js",
     "static/media/CookieRun Bold.otf": "/rdp/static/media/CookieRun Bold.8dd1f51181f6d7bcfe04.otf",
     "static/media/CookieRun Regular.otf": "/rdp/static/media/CookieRun Regular.cee2e5ff2bce56311a79.otf",
     "static/media/CookieRun Black.otf": "/rdp/static/media/CookieRun Black.6538392a446f77fae624.otf",
@@ -16,10 +16,10 @@
     "static/media/leftBatter.svg": "/rdp/static/media/leftBatter.67707d60b43aa3c7c56ff8276e71fc6d.svg",
     "index.html": "/rdp/index.html",
     "main.5a0bf1b4.css.map": "/rdp/static/css/main.5a0bf1b4.css.map",
-    "main.7b97e97b.js.map": "/rdp/static/js/main.7b97e97b.js.map"
+    "main.ba41b0ab.js.map": "/rdp/static/js/main.ba41b0ab.js.map"
   },
   "entrypoints": [
     "static/css/main.5a0bf1b4.css",
-    "static/js/main.7b97e97b.js"
+    "static/js/main.ba41b0ab.js"
   ]
 }
