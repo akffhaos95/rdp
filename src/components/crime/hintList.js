@@ -89,7 +89,7 @@ const HintList = () => {
           return (
             <ListItem
               key={hint.id}
-              onClick={() => discovered && handleHintClick(hint.id)}
+              onClick={() => handleHintClick(hint.id)}
               style={{ cursor: "pointer" }}
             >
               <HintItem style={{ opacity: discovered ? 1 : 0.5 }}>
