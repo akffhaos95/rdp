@@ -95,11 +95,11 @@ function AppContent() {
         overflow: "hidden",
       }}
     >
-      {/* {location.pathname.startsWith("/crime") ? ( */}
-      <CrimeToolbar />
-      {/* ) : ( */}
-      <MenuToolbar />
-      {/* )} */}
+      {location.pathname.endsWith("/crime") ? (
+        <CrimeToolbar />
+      ) : (
+        <MenuToolbar />
+      )}
       <main
         style={{
           flex: 1,
@@ -139,7 +139,7 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider theme={font_theme}>
-      <Router>
+      <Router basename="/rdp">
         <AppContent />
       </Router>
     </ThemeProvider>
