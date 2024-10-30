@@ -49,6 +49,12 @@ function MenuToolbar() {
             <Button color="inherit" component={Link} to="/edit">
               카드 수정
             </Button>
+            <Button color="inherit" component={Link} to="/crime/hint-list">
+              발견한 힌트
+            </Button>
+            <Button color="inherit" component={Link} to="/crime/time">
+              타이머
+            </Button>
           </>
         )}
       </Toolbar>
