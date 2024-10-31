@@ -105,11 +105,11 @@ const Sidebar = ({ card, setCard, tab, handleTab }) => {
                 ))}
             </div>
           ) : (
-            <Typography>Select a card to edit.</Typography>
+            <Typography>편집할 카드를 선택하세요</Typography>
           )}
         </ScrollTabPanel>
-        <ScrollTabPanel value="2">Item Two</ScrollTabPanel>
-        <ScrollTabPanel value="3">Item Three</ScrollTabPanel>
+        <ScrollTabPanel value="2">타이틀</ScrollTabPanel>
+        <ScrollTabPanel value="3">업적</ScrollTabPanel>
       </TabContext>
     </SidebarContainer>
   );

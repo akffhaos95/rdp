@@ -57,7 +57,7 @@ const Edit = () => {
               scale={scale}
               handleScaleChange={handleScaleChange}
             />
-            <CardBox card={card} setCard={setCard} scale={scale} />
+            <CardBox card={card} setCard={setCard} scale={scale} tab={tab} />
           </>
         )}
       </div>
