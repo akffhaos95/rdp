@@ -16,14 +16,14 @@ const Container = styled("div")({
   flexWrap: "wrap",
 });
 
-const CardBox = ({ card, setCard, isEdit, scale }) => {
+const CardBox = ({ card, scale, tab }) => {
   if (card === null) return null;
 
   return (
     <Container>
       <>
-        <CardFront card={card} scale={scale} />
-        <CardBack card={card} scale={scale} />
+        {tab !== "2" ? <CardFront card={card} scale={scale} /> : ""}
+        {tab !== "3" ? <CardBack card={card} scale={scale} /> : ""}
       </>
     </Container>
   );
