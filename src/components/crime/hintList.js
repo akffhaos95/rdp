@@ -75,7 +75,7 @@ const HintList = () => {
   };
 
   return (
-    <Box sx={{ padding: 2 }}>
+    <Box sx={{ padding: 1, paddingBottom: 5 }}>
       <List sx={{ width: "100%" }}>
         {hints.map((hint) => {
           const discovered = discoveredHints.some(

@@ -22,7 +22,6 @@ const Hint = () => {
     const discoveryTime = new Date().toISOString();
     const hintEntry = { id: hint_number, discoveryTime };
 
-    // Only save if hint is not already stored
     if (!storedHints.some((entry) => entry.id === hint_number)) {
       localStorage.setItem(
         "hintList",
@@ -71,7 +70,6 @@ const Hint = () => {
     }
   };
 
-  // Center the loading message with CircularProgress
   if (!hintData) {
     return (
       <Box
@@ -90,34 +88,49 @@ const Hint = () => {
   }
 
   return (
-    <Box sx={{ padding: 2, textAlign: "center", paddingBottom: 5 }}>
+    <Box
+      sx={{
+        padding: 3,
+        paddingBottom: 7,
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Typography variant="h4">{hintData.title}</Typography>
+
       {hintData.password && !showHint ? (
-        <form onSubmit={handlePasswordSubmit}>
-          <Typography variant="h5" sx={{ marginBottom: 2 }}>
-            {hintData.password.title}
-          </Typography>
-          <TextField
-            // label={hintData.password.title}
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            fullWidth
-            sx={{ width: "70%", marginBottom: 2 }} // Added marginBottom for consistency
-            margin="normal"
-          />
-          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
+        <form onSubmit={handlePasswordSubmit} style={{ marginTop: 5 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <TextField
+              label={hintData.password.title}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              sx={{ width: "80%" }}
+              margin="normal"
+            />
             <Button type="submit" variant="contained" color="primary">
-              Submit
+              제출
             </Button>
           </Box>
         </form>
       ) : (
-        <HintDisplay
-          title={hintData.title}
-          media={{ type: hintData.type, src: `${file}/${hintData.data}` }}
-          detail={hintData.detail}
-        />
+        <HintDisplay dataArray={hintData.dataArray} />
       )}
+      <Typography
+        variant="h7"
+        sx={{ marginTop: 2 }}
+        dangerouslySetInnerHTML={{
+          __html: hintData.detail.replace(/\n/g, "<br/>"),
+        }}
+      />
     </Box>
   );
 };

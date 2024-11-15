@@ -1,10 +1,11 @@
-// HintDisplay.js
-
 import { Box, Typography } from "@mui/material";
 
 import React from "react";
 
-const HintDisplay = ({ title, media, detail }) => {
+const HintDisplay = ({ dataArray }) => {
+  const file = `${process.env.PUBLIC_URL}/hint`;
+
+  if (!dataArray) return;
   return (
     <Box
       sx={{
@@ -15,35 +16,33 @@ const HintDisplay = ({ title, media, detail }) => {
         padding: 2,
       }}
     >
-      <Typography variant="h5" sx={{ marginBottom: 2 }}>
-        {title}
-      </Typography>
-
-      {/* Media Display */}
-      {media?.type === "image" && (
-        <img
-          src={media.src}
-          alt={title}
-          style={{ maxWidth: "70%", maxHeight: "50%", marginTop: "16px" }}
-        />
-      )}
-      {media?.type === "audio" && (
-        <audio controls style={{ marginTop: "16px" }}>
-          <source src={media.src} type="audio/wav" />
-          Your browser does not support the audio tag.
-        </audio>
-      )}
-      {media?.type === "video" && (
-        <video controls style={{ marginTop: "16px", maxWidth: "100%" }}>
-          <source src={media.src} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      )}
-
-      {/* Detail Description */}
-      <Typography variant="body1" sx={{ marginTop: 2 }}>
-        {detail}
-      </Typography>
+      {/* Iterate through the dataArray */}
+      {dataArray.map((res, index) => {
+        const { type, data } = res;
+        const src = `${file}/${data}`;
+        return (
+          <Box key={index} sx={{ marginBottom: 3 }}>
+            {type === "image" && (
+              <img
+                src={src}
+                style={{ maxWidth: "70%", maxHeight: "50%", marginTop: "16px" }}
+              />
+            )}
+            {type === "audio" && (
+              <audio controls style={{ marginTop: "16px" }}>
+                <source src={src} type="audio/wav" />
+                Your browser does not support the audio tag.
+              </audio>
+            )}
+            {type === "video" && (
+              <video controls style={{ marginTop: "16px", maxWidth: "100%" }}>
+                <source src={src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+          </Box>
+        );
+      })}
     </Box>
   );
 };
