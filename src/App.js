@@ -35,7 +35,7 @@ const font_theme = createTheme({
 function MenuToolbar() {
   const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   return (
-    <AppBar position="static" style={{ zIndex: 50 }}>
+    <AppBar position="pixed" style={{ zIndex: 50 }}>
       <Toolbar style={{ background: theme.main }}>
         {isMobile ? (
           <TemporaryDrawer />
@@ -61,7 +61,7 @@ function CrimeToolbar() {
   const savedName = localStorage.getItem("personal_name");
 
   return (
-    <AppBar position="static" style={{ zIndex: 50 }}>
+    <AppBar position="pixed" style={{ zIndex: 50 }}>
       <Toolbar style={{ background: theme.main }}>
         <Typography variant="h5" style={{ fontFamily: "Rye" }}>
           Rascal 크라임씬
@@ -124,6 +124,7 @@ function AppContent() {
           display: "flex",
           justifyContent: "space-between",
           overflow: "hidden",
+          paddingBottom: "50px",
         }}
       >
         <Box
