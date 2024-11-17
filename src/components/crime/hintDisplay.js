@@ -25,7 +25,11 @@ const HintDisplay = ({ dataArray }) => {
             {type === "image" && (
               <img
                 src={src}
-                style={{ maxWidth: "70%", maxHeight: "50%", marginTop: "16px" }}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "50%",
+                  marginTop: "16px",
+                }}
               />
             )}
             {type === "audio" && (

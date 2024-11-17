@@ -58,7 +58,6 @@ const HintList = () => {
   const convertToKST = (utcDateString) => {
     const utcDate = new Date(utcDateString);
     const options = {
-      year: "numeric",
       month: "2-digit",
       day: "2-digit",
       hour: "2-digit",
@@ -94,18 +93,18 @@ const HintList = () => {
             >
               <HintItem style={{ opacity: discovered ? 1 : 0.5 }}>
                 {/* Hint ID as Chip */}
-                <HintChip label={hint.id} />
+                <HintChip label={discovered ? hint.id : "Hint-?"} />
 
                 {/* Hint Title */}
                 <Typography variant="body1" sx={{ marginRight: "auto" }}>
-                  {discovered ? hint.title : "**************"}
+                  {discovered ? hint.title : "******"}
                 </Typography>
 
                 {/* Discovery Time */}
                 <Typography variant="body2" sx={{ marginLeft: "16px" }}>
                   {discoveryTime
                     ? convertToKST(discoveryTime)
-                    : "****.**.**. **:**:**"}
+                    : "**.**. **:**:**"}
                 </Typography>
               </HintItem>
             </ListItem>

@@ -16,7 +16,8 @@ import Footer from "./components/Footer";
 import Game from "./pages/Game";
 import Hint from "./components/crime/hint";
 import HintList from "./components/crime/hintList";
-import HintMain from "./components/crime/hintPersonal";
+import HintPersonal from "./components/crime/hintPersonal";
+import HintStart from "./components/crime/hintStart";
 import Player from "./pages/Player";
 import Record from "./pages/Record";
 import TemporaryDrawer from "./SideBar";
@@ -84,6 +85,7 @@ function CrimeToolbar() {
 
 function AppContent() {
   const location = useLocation();
+  const backgroundImage = `${process.env.PUBLIC_URL}/hint/background.png`;
 
   return (
     <div
@@ -93,8 +95,24 @@ function AppContent() {
         flexDirection: "column",
         width: "100vw",
         overflow: "hidden",
+        position: "relative",
       }}
     >
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.6,
+          zIndex: -1,
+        }}
+      ></div>
       {location.pathname.startsWith("/crime") ? (
         <CrimeToolbar />
       ) : (
@@ -121,10 +139,11 @@ function AppContent() {
             <Route path="/record" element={<Record />} />
             <Route path="/card" element={<Card />} />
             <Route path="/edit" element={<Edit />} />
+            <Route path="/crime" element={<HintStart />} />
             <Route path="/crime/time" element={<Timer />} />
             <Route
               path="/crime/personal/:personal_name"
-              element={<HintMain />}
+              element={<HintPersonal />}
             />
             <Route path="/crime/:hint_number" element={<Hint />} />
             <Route path="/crime/hint-list" element={<HintList />} />
