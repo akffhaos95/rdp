@@ -21,7 +21,7 @@ const HintDisplay = ({ dataArray }) => {
         const { type, data } = res;
         const src = `${file}/${data}`;
         return (
-          <Box key={index} sx={{ marginBottom: 3 }}>
+          <Box key={index} sx={{ marginBottom: 0 }}>
             {type === "image" && (
               <img
                 src={src}

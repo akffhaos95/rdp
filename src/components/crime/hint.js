@@ -97,7 +97,9 @@ const Hint = () => {
         flexDirection: "column",
       }}
     >
-      <Typography variant="h4">{hintData.title}</Typography>
+      <Typography variant="h4" style={{ fontFamily: "Black Han Sans" }}>
+        {hintData.title}
+      </Typography>
 
       {hintData.password && !showHint ? (
         <form onSubmit={handlePasswordSubmit} style={{ marginTop: 5 }}>
@@ -110,7 +112,6 @@ const Hint = () => {
           >
             <TextField
               label={hintData.password.title}
-              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               sx={{ width: "80%" }}

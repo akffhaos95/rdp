@@ -9,15 +9,15 @@ const HintItem = styled("div")`
   align-items: center;
   width: 100%;
   height: 50px;
-  padding: 2px;
+  padding: 1px;
   box-sizing: border-box;
   justify-content: space-between;
   border-bottom: 1px solid #e0e0e0;
-  gap: 10px;
+  gap: 3px;
 `;
 
 const HintChip = styled(Chip)`
-  margin-right: 8px;
+  margin-right: 5px;
   font-size: 0.875rem;
   color: white;
   background-color: #3f51b5;
@@ -74,11 +74,11 @@ const HintList = () => {
   };
 
   return (
-    <Box sx={{ padding: 1, paddingBottom: 5 }}>
+    <Box sx={{ paddingBottom: 5 }}>
       <List sx={{ width: "100%" }}>
         {hints.map((hint) => {
           const discovered = discoveredHints.some(
-            (entry) => entry.id === hint.id,
+            (entry) => entry && entry.id === hint.id,
           );
           const discoveryTime = discovered
             ? discoveredHints.find((entry) => entry.id === hint.id)
@@ -93,7 +93,10 @@ const HintList = () => {
             >
               <HintItem style={{ opacity: discovered ? 1 : 0.5 }}>
                 {/* Hint ID as Chip */}
-                <HintChip label={discovered ? hint.id : "Hint-?"} />
+                <HintChip
+                  label={discovered ? hint.id : "Hint-?"}
+                  size="small"
+                />
 
                 {/* Hint Title */}
                 <Typography variant="body1" sx={{ marginRight: "auto" }}>
@@ -101,7 +104,7 @@ const HintList = () => {
                 </Typography>
 
                 {/* Discovery Time */}
-                <Typography variant="body2" sx={{ marginLeft: "16px" }}>
+                <Typography variant="body2" sx={{ marginLeft: "3px" }}>
                   {discoveryTime
                     ? convertToKST(discoveryTime)
                     : "**.**. **:**:**"}
