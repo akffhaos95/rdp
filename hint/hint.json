@@ -1,38 +1,38 @@
 {
   "Hint-1": {
     "title": "시체의 상태",
-    "detail": "날카로운 흉기로 꿰뚫린 상해흔이 여럿 존재한다.\n뿜어져나온 출혈량은 죽음에 이르기에 충분한 듯싶다."
+    "dataArray": [{ "type": "image", "data": "Hint-1.jpg" }],
+    "detail": "날카로운 흉기로 꿰뚫린 상해흔이 여럿 존재한다.\n뿜어져나온 출혈량은 죽음에 이르기 충분하다. \n얼굴은 하얗게 질린 상태이다. 혈액이 부족해서인가?"
   },
   "Hint-1-1": {
     "title": "시체의 상태에 대한 의심",
-    "detail": "의사의 소견에 따르면 물론 치명적인 자상이지만, 출혈이 다소 적다고 한다. \n100kg에 가까운 성인 남성이 여러 급소에 자상히 깊숙이 남았는데도.."
-  },
-  "Hint-2": {
-    "title": "시체의 주변",
-    "detail": "들고 있던 술잔의 내용물과 피가 주변에 뒤섞여있어 매우 어수선하다."
+    "detail": "감식반의 소견에 따르면 뿜어져 나온 혈액의 양이 100KG 성인 남성치고는 적다고한다."
   },
   "Hint-3": {
     "title": "김감독의 핸드폰",
     "password": {
-      "title": "김감독의 핸드폰 비밀번호는?",
-      "answer": "0000"
+      "title": "라스칼 창단년도",
+      "answer": "2021"
     },
     "dataArray": [
-      { "type": "image", "data": "Hint-8.png" },
-      { "type": "audio", "data": "Hint-3.wav" }
+      { "type": "audio", "data": "Hint-3.m4a" },
+      { "type": "image", "data": "Hint-3.jpg" }
     ],
     "detail": "김감독의 핸드폰이다. 패스워드가 걸려있다."
   },
   "Hint-4": {
     "title": "야광스티커",
+    "dataArray": [{ "type": "image", "data": "Hint-4.jpg" }],
     "detail": "김감독 시체의 주변에 떨어진 야광 스티커다."
   },
   "Hint-5": {
     "title": "활과 화살",
-    "detail": "활과 화살이다. 연회장의 주인이 관상용으로 둔 것 같지만,\n살상력은 충분해 보인다."
+    "dataArray": [{ "type": "image", "data": "Hint-5.jpg" }],
+    "detail": "활과 화살이다. \n파티룸의 주인이 관상용으로 둔 것 같지만, \n활을 다루는데 능숙한 이가 사용할 수 있다면 살상력은 충분해보인다."
   },
   "Hint-6": {
     "title": "총",
+    "dataArray": [{ "type": "image", "data": "Hint-6.jpg" }],
     "detail": "여러 종류의 총이 구비되어 있으나,\n확인해보니 최근 사용한 적은 없는 것 같다."
   },
   "Hint-7": {
@@ -63,7 +63,7 @@
   },
   "Hint-12": {
     "title": "파티룸의 비어있는 술병들",
-    "dataArray": [{ "type": "image", "data": "Hint-8.png" }],
+    "dataArray": [{ "type": "image", "data": "Hint-12.jpg" }],
     "detail": "관상용인듯 비어있는 술병이다."
   },
   "Hint-13": {
@@ -110,10 +110,12 @@
   },
   "Hint-21": {
     "title": "숨겨진 도청장치",
+    "dataArray": [{ "type": "image", "data": "Hint-21.jpg" }],
     "detail": "파티룸 탁자 아래에서 발견된 도청장치"
   },
   "Hint-22": {
     "title": "숨겨진 블랙박스",
+    "dataArray": [{ "type": "image", "data": "Hint-22.jpg" }],
     "detail": "파티룸의 전체적인 모습을 담을 수 있어보이는 블랙박스가 설치되어있다."
   },
   "Hint-23": {
@@ -126,6 +128,7 @@
   },
   "Hint-25": {
     "title": "빈 약통",
+    "dataArray": [{ "type": "image", "data": "Hint-25.jpg" }],
     "detail": "어떠한 알약이 있었던 것 같으나 이미 비어있다."
   },
   "Hint-26": {
