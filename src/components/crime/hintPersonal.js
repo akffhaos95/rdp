@@ -15,6 +15,7 @@ const HintPersonal = () => {
   const [hintData, setHintData] = useState(null);
   const [password, setPassword] = useState("");
   const [showAfter, setShowAfter] = useState(false);
+  const [txtData, setTxtData] = useState(""); // New state to hold txt file data
   const file = `${process.env.PUBLIC_URL}/hint`;
 
   const fetchHintData = async () => {
@@ -29,8 +30,20 @@ const HintPersonal = () => {
     }
   };
 
+  const fetchTxtData = async () => {
+    try {
+      const response = await fetch(`${file}/${personal_name}.txt`);
+      if (!response.ok) throw new Error("Network response failed.");
+      const text = await response.text();
+      setTxtData(text);
+    } catch (error) {
+      console.error("Error fetching text file:", error);
+    }
+  };
+
   useEffect(() => {
     fetchHintData();
+    fetchTxtData(); // Fetch txt data on component mount
   }, [personal_name]);
 
   useEffect(() => {
@@ -51,7 +64,7 @@ const HintPersonal = () => {
     }
   };
 
-  if (!hintData) {
+  if (!hintData || !txtData) {
     return (
       <Box
         sx={{
@@ -100,6 +113,11 @@ const HintPersonal = () => {
           </Box>
         </form>
       )}
+
+      {/* Display the content of the .txt file */}
+      <Typography sx={{ whiteSpace: "pre-line", marginTop: 2 }}>
+        {txtData}
+      </Typography>
     </Box>
   );
 };
