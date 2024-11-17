@@ -17,12 +17,13 @@ const HintStart = () => {
       }}
     >
       {/* 이미지 */}
-      <img src={title} style={{ maxWidth: "95%", marginTop: "16px" }} />
-
+      {/* <img src={title} style={{ maxWidth: "95%", marginTop: "16px" }} /> */}
+      <Typography variant="h4" style={{ fontFamily: "Black Han Sans" }}>
+        라스칼 크라임씬
+      </Typography>
       <Box
         sx={{
           textAlign: "left",
-          marginTop: 2,
           maxWidth: "90%",
         }}
       >

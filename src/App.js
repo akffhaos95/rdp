@@ -59,13 +59,19 @@ function MenuToolbar() {
 
 function CrimeToolbar() {
   const savedName = localStorage.getItem("personal_name");
+  const logo = `${process.env.PUBLIC_URL}/hint/logo.png`;
 
   return (
     <AppBar position="pixed" style={{ zIndex: 50 }}>
       <Toolbar style={{ background: theme.main }}>
-        <Typography variant="h5" style={{ fontFamily: "Rye" }}>
-          Rascal 크라임씬
-        </Typography>
+        <img
+          src={logo}
+          alt="Rascal Logo"
+          style={{ height: "35px", width: "auto" }} // 로고 크기 조정
+        />
+        <Button color="inherit" component={Link} to="/crime">
+          가이드
+        </Button>
         {savedName && (
           <Button
             color="inherit"
