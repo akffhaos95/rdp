@@ -15,7 +15,7 @@ const HintPersonal = () => {
   const [hintData, setHintData] = useState(null);
   const [password, setPassword] = useState("");
   const [showAfter, setShowAfter] = useState(false);
-  const [txtData, setTxtData] = useState(""); // New state to hold txt file data
+  const [htmlData, setHtmlData] = useState("");
   const file = `${process.env.PUBLIC_URL}/hint`;
 
   const fetchHintData = async () => {
@@ -30,12 +30,12 @@ const HintPersonal = () => {
     }
   };
 
-  const fetchTxtData = async () => {
+  const fetchHtmlData = async () => {
     try {
-      const response = await fetch(`${file}/${personal_name}.txt`);
+      const response = await fetch(`${file}/${personal_name}.html`);
       if (!response.ok) throw new Error("Network response failed.");
-      const text = await response.text();
-      setTxtData(text);
+      const html = await response.text();
+      setHtmlData(html);
     } catch (error) {
       console.error("Error fetching text file:", error);
     }
@@ -43,7 +43,7 @@ const HintPersonal = () => {
 
   useEffect(() => {
     fetchHintData();
-    fetchTxtData(); // Fetch txt data on component mount
+    fetchHtmlData();
   }, [personal_name]);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const HintPersonal = () => {
     }
   };
 
-  if (!hintData || !txtData) {
+  if (!hintData || !htmlData) {
     return (
       <Box
         sx={{
@@ -83,8 +83,11 @@ const HintPersonal = () => {
 
   return (
     <Box sx={{ padding: 2, textAlign: "center", paddingBottom: 5 }}>
-      <Typography variant="h5" sx={{ marginBottom: 2 }}>
-        {hintData.name} {hintData.type}
+      <Typography
+        variant="h4"
+        sx={{ fontFamily: "Black And White Picture", marginBottom: 2 }}
+      >
+        {hintData.title}
       </Typography>
       <Typography sx={{ whiteSpace: "pre-line", marginBottom: 2 }}>
         {hintData.before}
@@ -96,28 +99,34 @@ const HintPersonal = () => {
           </Typography>
         </Fade>
       ) : (
-        <form onSubmit={handlePasswordSubmit}>
-          <TextField
-            label="Enter Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            fullWidth
-            sx={{ width: "70%", marginBottom: 2 }}
-            margin="normal"
-          />
-          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </Box>
-        </form>
+        <>
+          {hintData.password && (
+            <form onSubmit={handlePasswordSubmit}>
+              <TextField
+                label="Enter Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                fullWidth
+                sx={{ width: "70%", marginBottom: 2 }}
+                margin="normal"
+              />
+              <Box
+                sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}
+              >
+                <Button type="submit" variant="contained" color="primary">
+                  Submit
+                </Button>
+              </Box>
+            </form>
+          )}
+        </>
       )}
 
-      {/* Display the content of the .txt file */}
-      <Typography sx={{ whiteSpace: "pre-line", marginTop: 2 }}>
-        {txtData}
-      </Typography>
+      <Typography
+        sx={{ textAlign: "left" }}
+        dangerouslySetInnerHTML={{ __html: htmlData }}
+      />
     </Box>
   );
 };
