@@ -1,7 +1,9 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useEffect, useState } from "react";
 import { Step, StepLabel, Stepper } from "@mui/material";
 import styled, { keyframes } from "styled-components";
 import theme from "../../style/Theme";
+import alert from "../../asset/audio/timer_converted.mp3";
 const timerAnimation = keyframes`
   0% { transform: translateX(0); }
   25% { transform: translateX(-2px); }
@@ -12,11 +14,10 @@ const timerAnimation = keyframes`
 
 const TimeText = styled.span`
   display: inline-block;
-  animation: ${(props) =>
-      props.timer > props.redFlag ? "none" : timerAnimation}
-    0.2s infinite;
+  animation: ${(props) => (!props.redFlag ? "none" : timerAnimation)} 0.3s
+    infinite;
   font-size: 400px;
-  color: ${(props) => (props.redFlag < props.timer ? "black" : "red")};
+  color: ${(props) => (!props.redFlag ? "black" : "red")};
 `;
 
 const ControlBtn = styled.button`
@@ -62,12 +63,27 @@ const Timer = () => {
     }
   }, [timer, start, activeStep]);
 
+  useEffect(() => {
+    if (!start) return;
+
+    if (timer === redFlag) {
+      audio.play().catch((error) => console.error("Audio play failed:", error));
+    }
+
+    return () => {
+      if (timer !== redFlag) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    };
+  }, [start, timer, redFlag]);
+
   const resetTimer = () => {
     setActiveStep(0);
     setTimer(timetable[0].duration);
     setStart(false);
   };
-
+  const audio = new Audio(alert);
   return (
     <div style={{ padding: 40 }}>
       <Stepper activeStep={activeStep} sx={{ mb: 4 }}>
@@ -91,7 +107,7 @@ const Timer = () => {
           alignItems: "center",
         }}
       >
-        <TimeText timer={timer} redFlag={redFlag}>
+        <TimeText redFlag={redFlag >= timer && start}>
           {String(Math.floor(timer / 60)).padStart(2, "0")}:
           {String(timer % 60).padStart(2, "0")}
         </TimeText>

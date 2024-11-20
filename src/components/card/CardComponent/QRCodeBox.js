@@ -11,7 +11,6 @@ const QRCodeBox = ({ url, scale }) => {
     backgroundSize: "cover",
     marginLeft: "0%",
     marginRight: "2%",
-    display: "flex",
     alignItems: "center",
     // border: `${scale / 10}px solid #ddd`,
     borderRadius: "5%",
