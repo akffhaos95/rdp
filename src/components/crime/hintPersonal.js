@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
+import MarkdownIt from "markdown-it";
 import { useParams } from "react-router-dom";
 
 const HintPersonal = () => {
@@ -15,7 +16,7 @@ const HintPersonal = () => {
   const [hintData, setHintData] = useState(null);
   const [password, setPassword] = useState("");
   const [showAfter, setShowAfter] = useState(false);
-  const [htmlData, setHtmlData] = useState("");
+  const [mdData, setMdData] = useState("");
   const file = `${process.env.PUBLIC_URL}/hint`;
 
   const fetchHintData = async () => {
@@ -30,20 +31,20 @@ const HintPersonal = () => {
     }
   };
 
-  const fetchHtmlData = async () => {
+  const fetchMarkdownData = async () => {
     try {
-      const response = await fetch(`${file}/${personal_name}.html`);
+      const response = await fetch(`${file}/${personal_name}.md`);
       if (!response.ok) throw new Error("Network response failed.");
-      const html = await response.text();
-      setHtmlData(html);
+      const mdText = await response.text();
+      setMdData(mdText);
     } catch (error) {
-      console.error("Error fetching text file:", error);
+      console.error("Error fetching markdown file:", error);
     }
   };
 
   useEffect(() => {
     fetchHintData();
-    fetchHtmlData();
+    fetchMarkdownData();
   }, [personal_name]);
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const HintPersonal = () => {
     }
   };
 
-  if (!hintData || !htmlData) {
+  if (!hintData || !mdData) {
     return (
       <Box
         sx={{
@@ -80,6 +81,9 @@ const HintPersonal = () => {
       </Box>
     );
   }
+
+  const md = new MarkdownIt();
+  const htmlContent = md.render(mdData); // Convert Markdown to HTML
 
   return (
     <Box sx={{ padding: 2, textAlign: "center", paddingBottom: 5 }}>
@@ -124,8 +128,17 @@ const HintPersonal = () => {
       )}
 
       <Typography
-        sx={{ textAlign: "left" }}
-        dangerouslySetInnerHTML={{ __html: htmlData }}
+        sx={{
+          textAlign: "left",
+          "& h3": { textAlign: "center" },
+          "& code": {
+            fontFamily: "Noto Serif KR",
+            color: "red",
+            background: "none",
+            padding: 0,
+          },
+        }}
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
       />
     </Box>
   );
