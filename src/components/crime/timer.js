@@ -1,9 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useEffect, useState } from "react";
+
 import { Step, StepLabel, Stepper } from "@mui/material";
 import styled, { keyframes } from "styled-components";
-import theme from "../../style/Theme";
+import { useEffect, useState } from "react";
+
 import alert from "../../asset/audio/timer_converted.mp3";
+import theme from "../../style/Theme";
+
 const timerAnimation = keyframes`
   0% { transform: translateX(0); }
   25% { transform: translateX(-2px); }
@@ -66,12 +69,12 @@ const Timer = () => {
   useEffect(() => {
     if (!start) return;
 
-    if (timer === redFlag) {
+    if (timer === 0) {
       audio.play().catch((error) => console.error("Audio play failed:", error));
     }
 
     return () => {
-      if (timer !== redFlag) {
+      if (timer !== 0) {
         audio.pause();
         audio.currentTime = 0;
       }
