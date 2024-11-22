@@ -136,9 +136,199 @@
     "title": "약의 유통기한",
     "detail": "[의료기관 내 개봉 의약품 관리 지침]에 따르면 \n경구용 약의 경우, \n병에 많이 든 알약은 1년, \n다량이 든 시럽 병은 6개월, \n나눠 담긴 시럽 병은 1개월"
   },
+
+  "권강현-1": {
+    "title": "권강현의 경찰 신분증",
+    "dataArray": [{ "type": "image", "data": "권강현-1.png" }],
+    "detail": ""
+  },
+  "권강현-2": {
+    "title": "권강현의 자물쇠로 잠긴 다이어리 PYJ 이라는 이니셜이 적혀있다.",
+    "dataArray": [{ "type": "image", "data": "권강현-2.png" }],
+    "detail": ""
+  },
+  "권강현-3": {
+    "title": "권강현의 클로로포름에 젖은 손수건",
+    "dataArray": [{ "type": "image", "data": "권강현-3.png" }],
+    "detail": ""
+  },
+  "권강현-4": {
+    "title": "권강현의 휴대폰",
+    "dataArray": [
+      { "type": "image", "data": "권강현-4-1.png" },
+      { "type": "image", "data": "권강현-4-2.png" }
+    ],
+    "password": {
+      "title": "나의 해방일자",
+      "answer": "241123"
+    },
+    "detail": ""
+  },
+  "김기태-1": {
+    "title": "김기태의 신형 쏘렌토 차 키",
+    "dataArray": [{ "type": "image", "data": "김기태-1.jpg" }],
+    "detail": ""
+  },
+  "김기태-2": {
+    "title": "김기태의 김감독의 혈흔이 묻은 나이프",
+    "dataArray": [{ "type": "image", "data": "김기태-2.png" }],
+    "detail": ""
+  },
+  "김기태-3": {
+    "title": "김기태의 김범희 조언 요약 메모",
+    "dataArray": [{ "type": "image", "data": "김기태-3.png" }],
+    "detail": ""
+  },
+  "김태양-1": {
+    "title": "김태양의 김감독 소환권 남발, 압박에 대한 카톡",
+    "dataArray": [{ "type": "image", "data": "김태양-1.png" }],
+    "detail": ""
+  },
+  "김태양-2": {
+    "title": "김태양의 김감독에 대한 불만, 뒷담화 통화 녹음 기록",
+    "dataArray": [{ "type": "audio", "data": "김태양-2.mp3" }],
+    "detail": ""
+  },
+  "김태양-3": {
+    "title": "김태양의 제주도 양궁협회 직원증",
+    "dataArray": [{ "type": "image", "data": "김태양-3.png" }],
+    "detail": ""
+  },
+  "남동수-1": {
+    "title": "남동수의 라스칼 토토 용지",
+    "dataArray": [{ "type": "image", "data": "남동수-1.png" }],
+    "detail": ""
+  },
+  "남동수-2": {
+    "title": "남동수의 전파가 잡히지 않는 핸드폰",
+    "dataArray": [
+      { "type": "image", "data": "남동수-2-1.png" },
+      { "type": "image", "data": "남동수-2-2.png" },
+      { "type": "image", "data": "남동수-2-3.png" }
+    ],
+    "detail": ""
+  },
+  "남동수-3": {
+    "title": "남동수의 신문기사",
+    "dataArray": [{ "type": "image", "data": "남동수-3.png" }],
+    "detail": ""
+  },
+  "남동수-4": {
+    "title": "남동수의 손가락의 베인상처",
+    "dataArray": [{ "type": "image", "data": "남동수-4.png" }],
+    "detail": ""
+  },
+  "박영준-1": {
+    "title": "박영준의 독 검색기록",
+    "dataArray": [{ "type": "image", "data": "박영준-1.jpg" }],
+    "detail": ""
+  },
+  "박영준-2": {
+    "title": "박영준의 백단장과의 카톡",
+    "dataArray": [{ "type": "image", "data": "박영준-2.jpg" }],
+    "detail": ""
+  },
+  "박영준-3": {
+    "title": "박영준의 강북경찰서장 통화기록",
+    "dataArray": [{ "type": "image", "data": "박영준-3.jpg" }],
+    "detail": ""
+  },
+  "박영준-4": {
+    "title": "박영준의 삐꾸즈 단톡방",
+    "dataArray": [{ "type": "image", "data": "박영준-4.png" }],
+    "detail": ""
+  },
+  "백정철-1": {
+    "title": "백정철의 박영준과의 카톡",
+    "dataArray": [{ "type": "image", "data": "백정철-1.jpg" }],
+    "detail": ""
+  },
+  "백정철-2": {
+    "title": "백정철의 카카오톡에 저장된 박영준 프로필 ",
+    "dataArray": [{ "type": "image", "data": "백정철-2.jpg" }],
+    "detail": ""
+  },
+  "백정철-3": {
+    "title": "백정철의 유튜브 영상 댓글",
+    "dataArray": [{ "type": "image", "data": "백정철-3.png" }],
+    "detail": ""
+  },
   "백정철-4": {
-    "title": "통화녹음",
+    "title": "백정철의 김감독과의 통화기록",
     "dataArray": [{ "type": "audio", "data": "백정철-4.m4a" }],
-    "detail": "[의료기관 내 개봉 의약품 관리 지침]에 따르면 \n경구용 약의 경우, \n병에 많이 든 알약은 1년, \n다량이 든 시럽 병은 6개월, \n나눠 담긴 시럽 병은 1개월"
+    "detail": ""
+  },
+  "조태형-1": {
+    "title": "조태형의 카더라통신국장과 카톡",
+    "dataArray": [{ "type": "image", "data": "조태형-1.jpg" }],
+    "detail": ""
+  },
+  "권혁진-1": {
+    "title": "권혁진의 김감독에게 로비내역",
+    "dataArray": [{ "type": "image", "data": "권혁진-1.jpg" }],
+    "detail": ""
+  },
+  "권혁진-2": {
+    "title": "권혁진의 로비 후 하반기 스타팅 낙점 음성녹음",
+    "dataArray": [{ "type": "audio", "data": "권혁진-2.m4a" }],
+    "detail": ""
+  },
+  "김병진-1": {
+    "title": "김병진의 김감독과의 카톡",
+    "dataArray": [
+      { "type": "image", "data": "김병진-1.1.png" },
+      { "type": "image", "data": "김병진-1.2.png" }
+    ],
+    "detail": ""
+  },
+  "김상훈-1": {
+    "title": "김상훈의 김감독과의 카톡",
+    "dataArray": [{ "type": "image", "data": "김상훈-1.png" }],
+    "detail": ""
+  },
+  "김현철-1": {
+    "title": "김현철의 김감독과의 통화 녹음",
+    "dataArray": [{ "type": "audio", "data": "김현철-1.m4a" }],
+    "detail": ""
+  },
+  "김현철-2": {
+    "title": "김현철은 김감독에게 24넌 하반기 원하는 포지션과 타순을 알려왔다.",
+    "dataArray": [{ "type": "image", "data": "김현철-2.png" }],
+    "detail": ""
+  },
+  "류둉현-1": {
+    "title": "류동현의 김감독과의 카톡",
+    "dataArray": [{ "type": "image", "data": "류동현-1.png" }],
+    "detail": ""
+  },
+  "임지헌-1": {
+    "title": "임지헌의 갤러리 여자친구와 사진",
+    "dataArray": [{ "type": "image", "data": "임지헌-1.png" }],
+    "detail": ""
+  },
+  "임지헌-2": {
+    "title": "임지헌의 김감독과의 카톡",
+    "dataArray": [{ "type": "image", "data": "임지헌-2.png" }],
+    "detail": ""
+  },
+  "이동진-1": {
+    "title": "이동진의 갤러리 라스칼 멤버들과 방탈출 사진",
+    "dataArray": [{ "type": "image", "data": "이동진-1.jpg" }],
+    "detail": ""
+  },
+  "이동진-2": {
+    "title": "이동진의 김감독과의 카톡",
+    "dataArray": [{ "type": "image", "data": "이동진-2.png" }],
+    "detail": ""
+  },
+  "박재현-1": {
+    "title": "박재현의 김감독과의 카톡",
+    "dataArray": [{ "type": "image", "data": "박재현-1.png" }],
+    "detail": ""
+  },
+  "박재현-2": {
+    "title": "박재현의 갤러리 김감독과의 사진",
+    "dataArray": [{ "type": "image", "data": "박재현-2.jpg" }],
+    "detail": ""
   }
 }

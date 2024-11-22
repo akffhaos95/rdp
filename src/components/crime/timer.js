@@ -35,7 +35,7 @@ const ControlBtn = styled.button`
 `;
 const Timer = () => {
   const timetable = [
-    { label: "1차조사", duration: 20 },
+    { label: "1차조사", duration: 1900 },
     { label: "1차토론", duration: 10 },
     { label: "2차조사", duration: 20 },
     { label: "밀담", duration: 10 },

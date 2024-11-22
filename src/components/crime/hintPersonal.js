@@ -15,7 +15,11 @@ const HintPersonal = () => {
   const { personal_name } = useParams();
   const [hintData, setHintData] = useState(null);
   const [password, setPassword] = useState("");
-  const [showAfter, setShowAfter] = useState(false);
+  const [showAfter, setShowAfter] = useState(
+    localStorage.getItem("memory_unlock") === personal_name, // 초기값 설정
+  );
+
+  console.log(showAfter);
   const [mdData, setMdData] = useState("");
   const file = `${process.env.PUBLIC_URL}/hint`;
 
@@ -47,19 +51,17 @@ const HintPersonal = () => {
     fetchMarkdownData();
   }, [personal_name]);
 
-  useEffect(() => {
-    // Check localStorage for the name
-    const savedName = localStorage.getItem("memory_unlock");
-    if (savedName === personal_name) {
-      setShowAfter(true); // Skip password prompt if name is found
-    }
-  }, [personal_name]);
-
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     if (hintData && (!hintData.password || password === hintData.password)) {
       setShowAfter(true);
-      localStorage.setItem("memory_unlock", personal_name); // Save the name in localStorage
+      localStorage.setItem("memory_unlock", personal_name);
+
+      // Replace title with title-after
+      setHintData((prevData) => ({
+        ...prevData,
+        title: prevData["title-after"],
+      }));
     } else {
       alert("Incorrect password.");
     }
@@ -83,32 +85,23 @@ const HintPersonal = () => {
   }
 
   const md = new MarkdownIt();
-  const htmlContent = md.render(mdData); // Convert Markdown to HTML
+  const htmlContent = md.render(mdData);
 
+  console.log(showAfter);
   return (
     <Box sx={{ padding: 2, textAlign: "center", paddingBottom: 5 }}>
-      <Typography
-        variant="h4"
-        sx={{ fontFamily: "Black And White Picture", marginBottom: 2 }}
-      >
-        {hintData.title}
-      </Typography>
-      <Typography sx={{ whiteSpace: "pre-line", marginBottom: 2 }}>
-        {hintData.before}
-      </Typography>
-      {showAfter ? (
-        <Fade in={showAfter} timeout={3000}>
-          <Typography sx={{ whiteSpace: "pre-line", marginTop: 2 }}>
-            {hintData.after}
-          </Typography>
-        </Fade>
-      ) : (
+      {!showAfter ? (
         <>
+          <Typography
+            variant="h4"
+            sx={{ fontFamily: "Black And White Picture", marginBottom: 2 }}
+          >
+            {hintData.title}
+          </Typography>
           {hintData.password && (
             <form onSubmit={handlePasswordSubmit}>
               <TextField
-                label="Enter Password"
-                type="password"
+                label={hintData["password-title"]}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 fullWidth
@@ -125,7 +118,53 @@ const HintPersonal = () => {
             </form>
           )}
         </>
+      ) : (
+        <>
+          <Typography
+            variant="h4"
+            sx={{ fontFamily: "Black And White Picture", marginBottom: 2 }}
+          >
+            {hintData["title-after"]}
+          </Typography>
+        </>
       )}
+
+      {/* <Typography
+        variant="h4"
+        sx={{ fontFamily: "Black And White Picture", marginBottom: 2 }}
+      >
+        {hintData.title}
+      </Typography>
+
+      {showAfter ? (
+        <Fade in={showAfter} timeout={3000}>
+          <Typography sx={{ whiteSpace: "pre-line", marginTop: 2 }}>
+            {hintData.after}
+          </Typography>
+        </Fade>
+      ) : (
+        <>
+          {hintData.password && (
+            <form onSubmit={handlePasswordSubmit}>
+              <TextField
+                label={hintData["password-title"]}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                fullWidth
+                sx={{ width: "70%", marginBottom: 2 }}
+                margin="normal"
+              />
+              <Box
+                sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}
+              >
+                <Button type="submit" variant="contained" color="primary">
+                  Submit
+                </Button>
+              </Box>
+            </form>
+          )}
+        </>
+      )} */}
 
       <Typography
         sx={{
