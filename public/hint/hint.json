@@ -165,8 +165,12 @@
   },
   "권강현-2": {
     "title": "권강현의 자물쇠로 잠긴 다이어리 PYJ 이라는 이니셜이 적혀있다.",
+    "password": {
+      "title": "패스워드",
+      "answer": "202122"
+    },
     "dataArray": [{ "type": "image", "data": "권강현-2.png" }],
-    "detail": ""
+    "detail": "3자리 자물쇠가 2개 달려있는 굵직한 다이어리다."
   },
   "권강현-3": {
     "title": "권강현의 클로로포름에 젖은 손수건",
@@ -188,12 +192,12 @@
   "김기태-1": {
     "title": "김기태의 신형 쏘렌토 차 키",
     "dataArray": [{ "type": "image", "data": "김기태-1.jpg" }],
-    "detail": ""
+    "detail": "분명 신형 차 키인데 반들반들하게 닳아있다."
   },
   "김기태-2": {
     "title": "김기태의 김감독의 혈흔이 묻은 나이프",
     "dataArray": [{ "type": "image", "data": "김기태-2.png" }],
-    "detail": ""
+    "detail": "김감독 시체 최초목격 시 김기태가 쥐고 있었다."
   },
   "김기태-3": {
     "title": "김기태의 김범희 조언 요약 메모",
@@ -203,12 +207,12 @@
   "김태양-1": {
     "title": "김태양의 김감독 소환권 남발, 압박에 대한 카톡",
     "dataArray": [{ "type": "image", "data": "김태양-1.jpg" }],
-    "detail": ""
+    "detail": "김감독이 소환권을 배려없이 남발하고 김태양을 압박하는 카톡내용"
   },
   "김태양-2": {
     "title": "김태양의 김감독에 대한 불만, 뒷담화 통화 녹음 기록",
     "dataArray": [{ "type": "audio", "data": "김태양-2.mp3" }],
-    "detail": ""
+    "detail": "김태양이 김범희에게 김감독의 뒷담화를 하고 있는 통화내용"
   },
   "김태양-3": {
     "title": "김태양의 제주도 양궁협회 직원증",
@@ -218,13 +222,18 @@
   "남동수-1": {
     "title": "남동수의 라스칼 토토 용지",
     "dataArray": [{ "type": "image", "data": "남동수-1.png" }],
-    "detail": ""
+    "detail": "어마어마한 금액의 토토를 걸었다. 아무리 1회 우승자여도 이만한 금액을 도박에 걸기엔 쉽지않은데, 믿는 구석이 있는걸까?"
   },
   "남동수-2": {
     "title": "남동수의 전파가 잡히지 않는 핸드폰",
     "dataArray": [
       { "type": "image", "data": "남동수-2-1.jpg" },
+      { "type": "text", "data": "유니폼을 입고 찍은 사진" },
       { "type": "image", "data": "남동수-2-2.jpg" },
+      {
+        "type": "text",
+        "data": "누군가의 핸드폰 번호가 연락처에 저장되어있다. 증오가 가득한 이름이다."
+      },
       { "type": "image", "data": "남동수-2-3.jpg" }
     ],
     "detail": ""
@@ -317,6 +326,11 @@
     "dataArray": [{ "type": "image", "data": "김현철-2.png" }],
     "detail": ""
   },
+  "김현철-3": {
+    "title": "김현철의 제주옥탑 VIP 이용권.",
+    "dataArray": [{ "type": "image", "data": "김현철-2.png" }],
+    "detail": ""
+  },
   "류둉현-1": {
     "title": "류동현의 김감독과의 카톡",
     "dataArray": [{ "type": "image", "data": "류동현-1.png" }],
@@ -350,6 +364,11 @@
   "박재현-2": {
     "title": "박재현의 갤러리 김감독과의 사진",
     "dataArray": [{ "type": "image", "data": "박재현-2.jpg" }],
+    "detail": ""
+  },
+  "박재현-3": {
+    "title": "박재현의 대포폰의 카톡내용",
+    "dataArray": [{ "type": "image", "data": "박재현-3.png" }],
     "detail": ""
   }
 }

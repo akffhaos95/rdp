@@ -35,13 +35,13 @@ const ControlBtn = styled.button`
 `;
 const Timer = () => {
   const timetable = [
-    { label: "1차조사", duration: 1900 },
-    { label: "1차토론", duration: 10 },
-    { label: "2차조사", duration: 20 },
-    { label: "밀담", duration: 10 },
-    { label: "토론", duration: 30 },
-    { label: "최후의 조사", duration: 5 },
-    { label: "범인 지목", duration: 20 },
+    { label: "1차 조사", duration: 900 },
+    { label: "1차 회의", duration: 900 },
+    { label: "2차 조사", duration: 1200 },
+    { label: "밀담", duration: 1200 },
+    { label: "2차 회의", duration: 1800 },
+    { label: "최후의 조사", duration: 600 },
+    { label: "범인 지목", duration: 600 },
   ];
 
   const redFlag = 5;
