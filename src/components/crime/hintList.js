@@ -84,7 +84,8 @@ const HintList = () => {
             ? discoveredHints.find((entry) => entry.id === hint.id)
                 ?.discoveryTime
             : null;
-
+          
+          //hello
           return (
             <ListItem
               key={hint.id}
