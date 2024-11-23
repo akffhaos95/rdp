@@ -88,8 +88,8 @@ const HintList = () => {
           return (
             <ListItem
               key={hint.id}
-              onClick={() => handleHintClick(hint.id)}
-              style={{ cursor: "pointer" }}
+              onClick={discovered ? () => handleHintClick(hint.id) : null} // 클릭 조건 추가
+              style={{ cursor: discovered ? "pointer" : "default" }} // 포인터 커서 조건 추가
             >
               <HintItem style={{ opacity: discovered ? 1 : 0.5 }}>
                 {/* Hint ID as Chip */}
